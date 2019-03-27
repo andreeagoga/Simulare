@@ -10,9 +10,12 @@ import Service.MedicineService;
 import Service.TransactionService;
 import UI.MainController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 
@@ -20,8 +23,20 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UI/MainWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FirstWindow.fxml"));
         Parent root = fxmlLoader.load();
+
+        primaryStage.setTitle("Farmacy");
+        ChoiceBox choiceBox = new ChoiceBox();
+        choiceBox.getItems().add("Medicine manager");
+        choiceBox.getItems().add("Client manager");
+        choiceBox.getItems().add("Transaction manager");
+
+        HBox hbox = new HBox(choiceBox);
+
+        Scene scene = new Scene(hbox, 200, 100);
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
         IValidator<Medicine> medicineValidator = new MedicineValidator();
         IValidator<Client> clientValidator = new ClientValidator();
@@ -52,6 +67,7 @@ public class Main extends Application {
         primaryStage.setTitle("Medicine manager");
         primaryStage.setScene(new Scene(root, 600, 475));
         primaryStage.show();
+
     }
 
     public static void main(String[] args){

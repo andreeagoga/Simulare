@@ -80,7 +80,7 @@ public class MainController {
     }
 
     @FXML
-    private void initialize() {
+        private void initialize() {
 
         Platform.runLater(() -> {
             medicine.addAll(medicineService.getAll());
