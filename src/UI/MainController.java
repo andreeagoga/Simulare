@@ -80,6 +80,8 @@ public class MainController {
     }
 
     @FXML
+
+
         private void initialize() {
 
         Platform.runLater(() -> {

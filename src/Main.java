@@ -23,20 +23,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FirstWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MainWindow.fxml"));
         Parent root = fxmlLoader.load();
-
-        primaryStage.setTitle("Farmacy");
-        ChoiceBox choiceBox = new ChoiceBox();
-        choiceBox.getItems().add("Medicine manager");
-        choiceBox.getItems().add("Client manager");
-        choiceBox.getItems().add("Transaction manager");
-
-        HBox hbox = new HBox(choiceBox);
-
-        Scene scene = new Scene(hbox, 200, 100);
-        primaryStage.setScene(scene);
-        primaryStage.show();
 
         IValidator<Medicine> medicineValidator = new MedicineValidator();
         IValidator<Client> clientValidator = new ClientValidator();
