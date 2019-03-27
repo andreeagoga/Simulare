@@ -1,6 +1,8 @@
 package UI;
 
+import Domain.Client;
 import Domain.Medicine;
+import Domain.Transaction;
 import Service.ClientService;
 import Service.MedicineService;
 import Service.TransactionService;
@@ -30,12 +32,46 @@ public class MainController {
     public Button btnAddAndUpdateMedicine;
     public Button btnRemoveMedicine;
     public Button btnGetAllMedicine;
+    public TableView tblClient;
+    public TableColumn colClient;
+    public TableColumn colClientName;
+    public TableColumn colClientFirstName;
+    public TableColumn colClientCNP;
+    public TableColumn colClientDateOfBirth;
+    public TableColumn colClientDateOfRegistration;
+    public TextField txtClientId;
+    public TextField txtClientName;
+    public TextField txtClientFirstName;
+    public TextField txtClientCNP;
+    public TextField txtClientDateOfBirth;
+    public TextField txtClientDateOfRegistration;
+    public Button btnAddAndUpdateClient;
+    public Button btnRemoveClient;
+    public Button btnGetAllClient;
+    public TableView tblTransaction;
+    public TableColumn colTransaction;
+    public TableColumn colTransactionIdMedicine;
+    public TableColumn colTransactionIdClientCard;
+    public TableColumn colTransactionNumberMedicine;
+    public TableColumn colTransactionDate;
+    public TableColumn colTransactionHour;
+    public TextField txtTransactionId;
+    public TextField txtTransactionIdMedicine;
+    public TextField txtTransactionIdClientCard;
+    public TextField txtTransactionNumberMedicine;
+    public TextField txtTransactionDate;
+    public TextField txtTransactionHour;
+    public Button btnAddAndUpdateTransaction;
+    public Button btnRemoveTransaction;
+    public Button btnGetAllTransaction;
 
     private MedicineService medicineService;
     private ClientService clientService;
     private TransactionService transactionService;
 
     private ObservableList<Medicine> medicine = FXCollections.observableArrayList();
+    private ObservableList<Client> client = FXCollections.observableArrayList();
+    private ObservableList<Transaction> transaction = FXCollections.observableArrayList();
 
     public void setServices(MedicineService medicineService, ClientService clientService, TransactionService transactionService) {
         this.medicineService = medicineService;
@@ -50,6 +86,17 @@ public class MainController {
             medicine.addAll(medicineService.getAll());
             tblMedicine.setItems(medicine);
         });
+
+        Platform.runLater(() -> {
+            client.addAll(clientService.getAll());
+            tblClient.setItems(client);
+        });
+
+        Platform.runLater(() -> {
+            transaction.addAll(transactionService.getAll());
+            tblTransaction.setItems(transaction);
+        });
+
     }
 
     public void btnAddAndUpdateMedicineClick(ActionEvent actionEvent) {
@@ -88,7 +135,7 @@ public class MainController {
         }
     }
 
-    public void btnGetAllMedicineClick(ActionEvent actionEvent) {
+    public void btnGetAllMedicinesClick(ActionEvent actionEvent) {
         try {
             int id = Integer.parseInt(txtMedicineId.getText());
             String name = txtMedicineName.getText();
@@ -101,6 +148,113 @@ public class MainController {
 
             medicine.clear();
             medicine.addAll(medicineService.getAll());
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
+
+    public void btnAddAndUpdateClientClick(ActionEvent actionEvent) {
+        try {
+            int id = Integer.parseInt(txtClientId.getText());
+            String name = txtClientName.getText();
+            String firstName = txtClientFirstName.getText();
+            String CNP = txtClientCNP.getText();
+            String dateOfBirth = txtClientDateOfBirth.getText();
+            String dateOfRegistration = txtClientDateOfRegistration.getText();
+
+            clientService.addAndUpdate(id, name, firstName, CNP, dateOfBirth, dateOfRegistration);
+
+            client.clear();
+            client.addAll(clientService.getAll());
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
+
+    public void btnRemoveClientClick(ActionEvent actionEvent) {
+        try {
+            int id = Integer.parseInt(txtClientId.getText());
+            String name = txtClientName.getText();
+            String firstName = txtClientFirstName.getText();
+            String CNP = txtClientCNP.getText();
+            String dateOfBirth = txtClientDateOfBirth.getText();
+            String dateOfRegistration = txtClientDateOfRegistration.getText();
+
+            clientService.delete(id);
+
+            client.clear();
+            client.addAll(clientService.getAll());
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
+
+    public void btnGetAllClientsClick(ActionEvent actionEvent) {
+        try {
+            int id = Integer.parseInt(txtClientId.getText());
+            String name = txtClientName.getText();
+            String firstName = txtClientFirstName.getText();
+            String CNP = txtClientCNP.getText();
+            String dateOfBirth = txtClientDateOfBirth.getText();
+            String dateOfRegistration = txtClientDateOfRegistration.getText();
+
+            clientService.getAll();
+
+            client.clear();
+            client.addAll(clientService.getAll());
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
+    public void btnAddAndUpdateTransactionClick(ActionEvent actionEvent) {
+        try {
+            int id = Integer.parseInt(txtTransactionId.getText());
+            int idMedicine = Integer.parseInt(txtTransactionIdMedicine.getText());
+            int idClientCard = Integer.parseInt(txtTransactionIdClientCard.getText());
+            int numberMedicine = Integer.parseInt(txtTransactionNumberMedicine.getText());
+            String date = txtTransactionDate.getText();
+            String hour = txtTransactionHour.getText();
+
+            transactionService.addAndUpdate(id, idMedicine, idClientCard, numberMedicine, date, hour);
+
+            transaction.clear();
+            transaction.addAll(transactionService.getAll());
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
+
+    public void btnRemoveTransactionClick(ActionEvent actionEvent) {
+        try {
+            int id = Integer.parseInt(txtTransactionId.getText());
+            int idMedicine = Integer.parseInt(txtTransactionIdMedicine.getText());
+            int idClientCard = Integer.parseInt(txtTransactionIdClientCard.getText());
+            int numberMedicine = Integer.parseInt(txtTransactionNumberMedicine.getText());
+            String date = txtTransactionDate.getText();
+            String hour = txtTransactionHour.getText();
+
+            transactionService.delete(id);
+
+            transaction.clear();
+            transaction.addAll(transactionService.getAll());
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
+
+    public void btnGetAllTransactionsClick(ActionEvent actionEvent) {
+        try {
+            int id = Integer.parseInt(txtTransactionId.getText());
+            int idMedicine = Integer.parseInt(txtTransactionIdMedicine.getText());
+            int idClientCard = Integer.parseInt(txtTransactionIdClientCard.getText());
+            int numberMedicine = Integer.parseInt(txtTransactionNumberMedicine.getText());
+            String date = txtTransactionDate.getText();
+            String hour = txtTransactionHour.getText();
+
+            transactionService.getAll();
+
+            transaction.clear();
+            transaction.addAll(transactionService.getAll());
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
