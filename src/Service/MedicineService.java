@@ -62,4 +62,12 @@ public class MedicineService {
     public List<Medicine> getAll(){
         return repository.getAll();
     }
+
+    public void searchMedicine(String option){
+        int i = 0;
+        for(Medicine medicine : repository.getAll()){
+            if(medicine.toString().contains(option))
+                System.out.printf("%d. ID:%-5s |Name: %-15s |First name: %-10s |Producer: %-10s |Price:%-10s |Recipe:%-10s %n",i, medicine.getId(),medicine.getName(),medicine.getFirstName(),medicine.getPrice(), medicine.isRecipe());
+        }
+    }
 }

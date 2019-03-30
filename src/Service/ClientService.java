@@ -3,6 +3,7 @@ package Service;
 import Domain.Client;
 import Repository.IRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientService {
@@ -66,4 +67,14 @@ public class ClientService {
         return repository.getAll();
     }
 
+    public List<Client> searchClient(String option){
+        int i = 0;
+        List<Client> clientsFound = new ArrayList<>();
+        for(Client client : repository.getAll()){
+            if(client.toString().contains(option))
+               clientsFound.add(client);
+                i++;
+        }
+        return clientsFound;
+    }
 }

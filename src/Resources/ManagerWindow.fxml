@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:controller="UI.ManagerController"
+      xmlns:fx="http://javafx.com/fxml" alignment="center">
+
+    <VBox>
+        <Button fx:id="btnMedicine" text="Medicine manager" onAction="#btnMedicineClick"/>
+        <Button fx:id="btnClient" text="Client manager" onAction="#btnClientClick"/>
+        <Button fx:id="btnTransaction" text="Transaction manager" onAction="#btnTransactionClick"/>
+    </VBox>
+</HBox>
+

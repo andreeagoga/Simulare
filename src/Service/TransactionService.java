@@ -65,4 +65,12 @@ public class TransactionService {
     public List<Transaction> getAll(){
         return  repository.getAll();
     }
+
+    public void searchTransaction(String option){
+        int i = 0;
+        for(Transaction transaction : repository.getAll()){
+            if(transaction.toString().contains(option))
+                System.out.printf("%d. ID:%-5s |ID Medicine: %-15s |ID Client Card: %-10s |Number of medicine: %-10s |Date:%-10s |Hour:%-10s %n",i, transaction.getId(), transaction.getIdMedicine(), transaction.getIdClientCard(), transaction.getNumberMedicine(), transaction.getDate(), transaction.getHour());
+        }
+    }
 }

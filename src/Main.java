@@ -8,7 +8,7 @@ import Repository.InMemoryRepository;
 import Service.ClientService;
 import Service.MedicineService;
 import Service.TransactionService;
-import UI.MainController;
+import UI.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MainWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ManagerWindow.fxml"));
         Parent root = fxmlLoader.load();
 
         IValidator<Medicine> medicineValidator = new MedicineValidator();
@@ -49,11 +49,11 @@ public class Main extends Application {
         transactionService.addAndUpdate(2, 3, 3, 15, "12.12.2012","12:00");
         transactionService.addAndUpdate(3, 6, 6, 25, "12.12.2012","10:00");
 
-        MainController mainController = fxmlLoader.getController();
-        mainController.setServices(medicineService, clientService, transactionService);
+        ManagerController managerController = fxmlLoader.getController();
+        managerController.setServices(medicineService, clientService, transactionService);
 
-        primaryStage.setTitle("Medicine manager");
-        primaryStage.setScene(new Scene(root, 600, 475));
+        primaryStage.setTitle("Command manager");
+        primaryStage.setScene(new Scene(root, 200, 100));
         primaryStage.show();
 
     }
