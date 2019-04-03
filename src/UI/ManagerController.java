@@ -81,7 +81,7 @@ public class ManagerController {
             stage.setTitle("Transaction manager");
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
-           TransactionController controller =  fxmlLoader.getController();
+            TransactionController controller =  fxmlLoader.getController();
             controller.setTransactionService(transactionService);
             stage.showAndWait();
         } catch (IOException e) {

@@ -9,9 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -97,24 +96,19 @@ public class ClientController {
         }
     }
 
-//    public void btnSearchClient(ActionEvent actionEvent) {
-//        try {
-//            String option = txtClientSearch.getText();
-//            clientService.searchClient(option);
+    public void btnSearchClient(ActionEvent actionEvent) {
+        try {
+            String option = txtClientSearch.getText();
+            clientService.searchClient(option);
 //            client.clear();
 //            client.addAll(clientService.getAll());
-//
-//            if(clientsFound.equals(option)){
-//                option.setTextFill(Color.RED);
-//                currentRow.setTextFill(Color.PINK);
-//            }
-//            else{
-//                item.setTextFill(Color.GREEN);
-//                currentRow.setTextFill(Color.BLUE);
-//            }
-//            }
-//        } catch (RuntimeException rex) {
-//            Common.showValidationError(rex.getMessage());
-//        }
-//    }
+            TableRow<Client> currentRow = new TableRow<>();
+            if(clientService.searchClient(option).toString() != null){
+               //currentRow.setStyle("-fx-background-color:lightcoral");
+                System.out.println(currentRow);
+            }
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
 }
