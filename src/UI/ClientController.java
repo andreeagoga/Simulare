@@ -69,6 +69,12 @@ public class ClientController {
 
             client.clear();
             client.addAll(clientService.getAll());
+            txtClientId.clear();
+            txtClientName.clear();
+            txtClientFirstName.clear();
+            txtClientCNP.clear();
+            txtClientDateOfBirth.clear();
+            txtClientDateOfRegistration.clear();
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
@@ -77,10 +83,11 @@ public class ClientController {
     public void btnRemoveClientClick(ActionEvent actionEvent) {
         try {
             int id = Integer.parseInt(txtClientId.getText());
-            clientService.delete(id);
 
+            clientService.delete(id);
             client.clear();
             client.addAll(clientService.getAll());
+            txtClientId.clear();
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
@@ -91,6 +98,12 @@ public class ClientController {
             clientService.getAll();
             client.clear();
             client.addAll(clientService.getAll());
+            txtClientId.clear();
+            txtClientName.clear();
+            txtClientFirstName.clear();
+            txtClientCNP.clear();
+            txtClientDateOfBirth.clear();
+            txtClientDateOfRegistration.clear();
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
@@ -99,16 +112,13 @@ public class ClientController {
     public void btnSearchClient(ActionEvent actionEvent) {
         try {
             String option = txtClientSearch.getText();
-            clientService.searchClient(option);
-//            client.clear();
-//            client.addAll(clientService.getAll());
-            TableRow<Client> currentRow = new TableRow<>();
-            if(clientService.searchClient(option).toString() != null){
-               //currentRow.setStyle("-fx-background-color:lightcoral");
-                System.out.println(currentRow);
-            }
+            List<Client> foundClients = clientService.searchClient(option);
+            client.clear();
+            client.addAll(foundClients);
+            txtClientSearch.clear();
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
     }
+
 }

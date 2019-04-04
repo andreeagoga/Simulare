@@ -56,5 +56,7 @@
         <Button fx:id="btnAddAndUpdateMedicine" text="Add/Update Medicine" onAction="#btnAddAndUpdateMedicineClick"/>
         <Button fx:id="btnRemoveMedicine" text="Remove Medicine" onAction="#btnRemoveMedicineClick"/>
         <Button fx:id="btnGetAllMedicine" text="Get All Medicines" onAction="#btnGetAllMedicinesClick"/>
+        <TextField fx:id="txtMedicineSearch" promptText="Medicine Search"/>
+        <Button fx:id="btnMedicineSearch" text="Search client" onAction="#btnSearchMedicine"/>
     </VBox>
 </HBox>

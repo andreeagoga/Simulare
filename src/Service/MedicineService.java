@@ -3,6 +3,7 @@ package Service;
 import Domain.Medicine;
 import Repository.IRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MedicineService {
@@ -63,11 +64,12 @@ public class MedicineService {
         return repository.getAll();
     }
 
-    public void searchMedicine(String option){
-        int i = 0;
+    public List<Medicine> searchMedicine(String option){
+        List<Medicine> medicinesFound = new ArrayList<>();
         for(Medicine medicine : repository.getAll()){
             if(medicine.toString().contains(option))
-                System.out.printf("%d. ID:%-5s |Name: %-15s |First name: %-10s |Producer: %-10s |Price:%-10s |Recipe:%-10s %n",i, medicine.getId(),medicine.getName(),medicine.getFirstName(),medicine.getPrice(), medicine.isRecipe());
+                medicinesFound.add(medicine);
         }
+        return medicinesFound;
     }
 }

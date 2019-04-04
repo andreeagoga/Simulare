@@ -22,13 +22,7 @@ public class Transaction extends Entity{
 
     @Override
     public String toString() {
-        return "Transaction{" +
-                "idMedicine=" + idMedicine +
-                ", idClientCard=" + idClientCard +
-                ", numberMedicine=" + numberMedicine +
-                ", date='" + date + '\'' +
-                ", hour='" + hour + '\'' +
-                '}';
+        return idMedicine + " " + idClientCard + " " + numberMedicine + " " + date + " " + hour;
     }
 
     public int getIdMedicine() {

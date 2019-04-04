@@ -16,13 +16,7 @@ public class Client extends Entity{
 
     @Override
     public String toString() {
-        return "Client{" +
-                "name='" + name + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", CNP='" + CNP + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", dateOfRegistration='" + dateOfRegistration + '\'' +
-                '}';
+        return name + " " + firstName + " " + CNP + " " + dateOfBirth + " " + dateOfRegistration;
     }
 
     @Override

@@ -12,6 +12,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.util.List;
+
 public class TransactionController {
     public TableView tblTransaction;
     public TableColumn colTransaction;
@@ -29,6 +31,8 @@ public class TransactionController {
     public Button btnAddAndUpdateTransaction;
     public Button btnRemoveTransaction;
     public Button btnGetAllTransaction;
+    public TextField txtTransactionSearch;
+    public Button btnTransactionSearch;
 
     private TransactionService transactionService;
     private ObservableList<Transaction> transaction = FXCollections.observableArrayList();
@@ -54,9 +58,14 @@ public class TransactionController {
             String hour = txtTransactionHour.getText();
 
             transactionService.addAndUpdate(id, idMedicine, idClientCard, numberMedicine, date, hour);
-
             transaction.clear();
             transaction.addAll(transactionService.getAll());
+            txtTransactionId.clear();
+            txtTransactionIdMedicine.clear();
+            txtTransactionIdClientCard.clear();
+            txtTransactionNumberMedicine.clear();
+            txtTransactionDate.clear();
+            txtTransactionHour.clear();
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
@@ -65,16 +74,10 @@ public class TransactionController {
     public void btnRemoveTransactionClick(ActionEvent actionEvent) {
         try {
             int id = Integer.parseInt(txtTransactionId.getText());
-            int idMedicine = Integer.parseInt(txtTransactionIdMedicine.getText());
-            int idClientCard = Integer.parseInt(txtTransactionIdClientCard.getText());
-            int numberMedicine = Integer.parseInt(txtTransactionNumberMedicine.getText());
-            String date = txtTransactionDate.getText();
-            String hour = txtTransactionHour.getText();
-
             transactionService.delete(id);
-
             transaction.clear();
             transaction.addAll(transactionService.getAll());
+            txtTransactionId.clear();
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
@@ -82,17 +85,27 @@ public class TransactionController {
 
     public void btnGetAllTransactionsClick(ActionEvent actionEvent) {
         try {
-            int id = Integer.parseInt(txtTransactionId.getText());
-            int idMedicine = Integer.parseInt(txtTransactionIdMedicine.getText());
-            int idClientCard = Integer.parseInt(txtTransactionIdClientCard.getText());
-            int numberMedicine = Integer.parseInt(txtTransactionNumberMedicine.getText());
-            String date = txtTransactionDate.getText();
-            String hour = txtTransactionHour.getText();
-
             transactionService.getAll();
-
             transaction.clear();
             transaction.addAll(transactionService.getAll());
+            txtTransactionId.clear();
+            txtTransactionIdMedicine.clear();
+            txtTransactionIdClientCard.clear();
+            txtTransactionNumberMedicine.clear();
+            txtTransactionDate.clear();
+            txtTransactionHour.clear();
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
+
+    public void btnSearchTransaction(ActionEvent actionEvent) {
+        try {
+            String option = txtTransactionSearch.getText();
+            List<Transaction> foundTransactions = transactionService.searchTransaction(option);
+            transaction.clear();
+            transaction.addAll(foundTransactions);
+            txtTransactionSearch.clear();
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }

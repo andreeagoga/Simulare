@@ -9,6 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.util.List;
+
 public class MedicineController {
     public TableView tblMedicine;
     public TableColumn colMedicine;
@@ -26,6 +28,8 @@ public class MedicineController {
     public Button btnAddAndUpdateMedicine;
     public Button btnRemoveMedicine;
     public Button btnGetAllMedicine;
+    public Button btnMedicineSearch;
+    public TextField txtMedicineSearch;
 
     private MedicineService medicineService;
     private ObservableList<Medicine> medicine = FXCollections.observableArrayList();
@@ -53,9 +57,14 @@ public class MedicineController {
             boolean recipe = chkMedicineRecipe.isSelected();
 
             medicineService.addAndUpdate(id, name, firstName, producer, price, recipe);
-
             medicine.clear();
             medicine.addAll(medicineService.getAll());
+            txtMedicineId.clear();
+            txtMedicineName.clear();
+            txtMedicineFirstName.clear();
+            txtMedicineProducer.clear();
+            txtMedicinePrice.clear();
+            chkMedicineRecipe.setSelected(false);
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
@@ -64,16 +73,10 @@ public class MedicineController {
     public void btnRemoveMedicineClick(ActionEvent actionEvent) {
         try {
             int id = Integer.parseInt(txtMedicineId.getText());
-            String name = txtMedicineName.getText();
-            String firstName = txtMedicineFirstName.getText();
-            String producer = txtMedicineProducer.getText();
-            double price = Double.parseDouble(txtMedicinePrice.getText());
-            boolean recipe = chkMedicineRecipe.isSelected();
-
             medicineService.delete(id);
-
             medicine.clear();
             medicine.addAll(medicineService.getAll());
+            txtMedicineId.clear();
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
@@ -81,17 +84,27 @@ public class MedicineController {
 
     public void btnGetAllMedicinesClick(ActionEvent actionEvent) {
         try {
-            int id = Integer.parseInt(txtMedicineId.getText());
-            String name = txtMedicineName.getText();
-            String firstName = txtMedicineFirstName.getText();
-            String producer = txtMedicineProducer.getText();
-            double price = Double.parseDouble(txtMedicinePrice.getText());
-            boolean recipe = chkMedicineRecipe.isSelected();
-
             medicineService.getAll();
-
             medicine.clear();
             medicine.addAll(medicineService.getAll());
+            txtMedicineId.clear();
+            txtMedicineName.clear();
+            txtMedicineFirstName.clear();
+            txtMedicineProducer.clear();
+            txtMedicinePrice.clear();
+            chkMedicineRecipe.setSelected(false);
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
+
+    public void btnSearchMedicine(ActionEvent actionEvent) {
+        try {
+            String option = txtMedicineSearch.getText();
+            List<Medicine> foundMedicines = medicineService.searchMedicine(option);
+            medicine.clear();
+            medicine.addAll(foundMedicines);
+            txtMedicineSearch.clear();
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }

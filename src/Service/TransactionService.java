@@ -3,6 +3,7 @@ package Service;
 import Domain.Transaction;
 import Repository.IRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionService {
@@ -66,11 +67,12 @@ public class TransactionService {
         return  repository.getAll();
     }
 
-    public void searchTransaction(String option){
-        int i = 0;
+    public List<Transaction> searchTransaction(String option){
+        List<Transaction> transactionsFound = new ArrayList<>();
         for(Transaction transaction : repository.getAll()){
             if(transaction.toString().contains(option))
-                System.out.printf("%d. ID:%-5s |ID Medicine: %-15s |ID Client Card: %-10s |Number of medicine: %-10s |Date:%-10s |Hour:%-10s %n",i, transaction.getId(), transaction.getIdMedicine(), transaction.getIdClientCard(), transaction.getNumberMedicine(), transaction.getDate(), transaction.getHour());
+                transactionsFound.add(transaction);
         }
+        return transactionsFound;
     }
 }

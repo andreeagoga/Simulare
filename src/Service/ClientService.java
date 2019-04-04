@@ -68,12 +68,11 @@ public class ClientService {
     }
 
     public List<Client> searchClient(String option){
-        int i = 0;
         List<Client> clientsFound = new ArrayList<>();
         for(Client client : repository.getAll()){
+            System.out.println(client.toString());
             if(client.toString().contains(option))
                clientsFound.add(client);
-                i++;
         }
         return clientsFound;
     }

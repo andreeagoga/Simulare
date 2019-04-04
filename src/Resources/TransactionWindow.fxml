@@ -54,5 +54,7 @@
         <Button fx:id="btnAddAndUpdateTransaction" text="Add/Update Transaction" onAction="#btnAddAndUpdateTransactionClick"/>
         <Button fx:id="btnRemoveTransaction" text="Remove Transaction" onAction="#btnRemoveTransactionClick"/>
         <Button fx:id="btnGetAllTransaction" text="Get All Transactions" onAction="#btnGetAllTransactionsClick"/>
+        <TextField fx:id="txtTransactionSearch" promptText="Medicine Search"/>
+        <Button fx:id="btnTransactionSearch" text="Search client" onAction="#btnSearchTransaction"/>
     </VBox>
 </HBox>
