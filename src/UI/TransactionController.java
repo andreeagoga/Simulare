@@ -33,6 +33,8 @@ public class TransactionController {
     public Button btnGetAllTransaction;
     public TextField txtTransactionSearch;
     public Button btnTransactionSearch;
+    public Button btnTransactionTime;
+    public Button btnTransactionTimeRemove;
 
     private TransactionService transactionService;
     private ObservableList<Transaction> transaction = FXCollections.observableArrayList();
@@ -99,7 +101,7 @@ public class TransactionController {
         }
     }
 
-    public void btnSearchTransaction(ActionEvent actionEvent) {
+    public void btnTransactionSearchClick(ActionEvent actionEvent) {
         try {
             String option = txtTransactionSearch.getText();
             List<Transaction> foundTransactions = transactionService.searchTransaction(option);
@@ -109,5 +111,12 @@ public class TransactionController {
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
+    }
+
+
+    public void btnTransactionTimeClick(ActionEvent actionEvent) {
+    }
+
+    public void btnTransactionTimeRemoveClick(ActionEvent actionEvent) {
     }
 }

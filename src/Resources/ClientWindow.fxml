@@ -55,7 +55,9 @@
         <Button fx:id="btnAddAndUpdateClient" text="Add/Update Client" onAction="#btnAddAndUpdateClientClick"/>
         <Button fx:id="btnRemoveClient" text="Remove Client" onAction="#btnRemoveClientClick"/>
         <Button fx:id="btnGetAllClient" text="Get All Clients" onAction="#btnGetAllClientsClick"/>
-        <TextField fx:id="txtClientSearch" promptText="Client Search"/>
+        <!--<TextField fx:id="txtClientSearch" promptText="Client Search"/>-->
         <Button fx:id="btnClientSearch" text="Search client" onAction="#btnSearchClient"/>
+        <Button fx:id="btnClientSort" text="Sort client cards" onAction="#btnSortClient"/>
+
     </VBox>
 </HBox>

@@ -30,6 +30,8 @@ public class MedicineController {
     public Button btnGetAllMedicine;
     public Button btnMedicineSearch;
     public TextField txtMedicineSearch;
+    public Button btnMedicineSort;
+    public Button btnMedicineExpensive;
 
     private MedicineService medicineService;
     private ObservableList<Medicine> medicine = FXCollections.observableArrayList();
@@ -98,7 +100,7 @@ public class MedicineController {
         }
     }
 
-    public void btnSearchMedicine(ActionEvent actionEvent) {
+    public void btnSearchMedicineClick(ActionEvent actionEvent) {
         try {
             String option = txtMedicineSearch.getText();
             List<Medicine> foundMedicines = medicineService.searchMedicine(option);
@@ -108,5 +110,11 @@ public class MedicineController {
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
+    }
+
+    public void btnSortMedicinesClick(ActionEvent actionEvent) {
+    }
+
+    public void btnIncreaseMedicinesClick(ActionEvent actionEvent) {
     }
 }
