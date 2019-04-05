@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.CheckBox?>
 
-<HBox fx:controller="UI.TransactionController"
+<HBox fx:controller="UI.SecondControllers.TransactionController"
       xmlns:fx="http://javafx.com/fxml" alignment="center">
     <VBox>
         <TableView fx:id="tblTransaction" editable="true">
@@ -54,9 +54,8 @@
         <Button fx:id="btnAddAndUpdateTransaction" text="Add/Update Transaction" onAction="#btnAddAndUpdateTransactionClick"/>
         <Button fx:id="btnRemoveTransaction" text="Remove Transaction" onAction="#btnRemoveTransactionClick"/>
         <Button fx:id="btnGetAllTransaction" text="Get All Transactions" onAction="#btnGetAllTransactionsClick"/>
-        <!--<TextField fx:id="txtTransactionSearch" promptText="Medicine Search"/>-->
         <Button fx:id="btnTransactionSearch" text="Search transaction" onAction="#btnTransactionSearchClick"/>
-        <Button fx:id="btnTransactionTime" text="Time of transactions to show" onAction="#btnTransactionTimeClick"/>
-        <Button fx:id="btnTransactionTimeRemove" text="Time of transactions to remove" onAction="#btnTransactionTimeRemoveClick"/>
+        <Button fx:id="btnTransactionTime" text="Time of transactions to show/remove" onAction="#btnTransactionTimeClick"/>
+        <Button fx:id="btnTransactionPrice" text="Set the percentage for price increase" onAction="#btnTransactionPrice"/>
     </VBox>
 </HBox>

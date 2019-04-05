@@ -8,7 +8,7 @@
 <?import javafx.scene.control.CheckBox?>
 
 
-<HBox fx:controller="UI.MedicineController"
+<HBox fx:controller="UI.SecondControllers.MedicineController"
       xmlns:fx="http://javafx.com/fxml" alignment="center">
 
     <VBox>

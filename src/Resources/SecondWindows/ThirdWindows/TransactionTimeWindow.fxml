@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:controller="UI.SecondControllers.ThirdControllers.TransactionTimeController"
+      xmlns:fx="http://javafx.com/fxml" alignment="center">
+
+    <VBox>
+        <Button fx:id="btnTransactionTimeShow" text="Time of transaction to show" onAction="#btnTransactionTimeShowClick"/>
+        <Button fx:id="btnTransactionTimeRemove" text="Time of transaction to remove" onAction="#btnTransactionTimeRemoveClick"/>
+        <Button fx:id="btnTransactionPriceShow" text="Price increase percent" onAction="#btnTransactionPriceClick"/>
+    </VBox>
+</HBox>
+

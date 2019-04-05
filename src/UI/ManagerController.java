@@ -1,12 +1,12 @@
 package UI;
 
-import Domain.Client;
-import Domain.Medicine;
-import Domain.Transaction;
 import Service.ClientService;
 import Service.MedicineService;
 
 import Service.TransactionService;
+import UI.SecondControllers.ClientController;
+import UI.SecondControllers.MedicineController;
+import UI.SecondControllers.TransactionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -36,7 +36,7 @@ public class ManagerController {
     public void btnMedicineClick(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/MedicineWindow.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/MedicineWindow.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 600, 600);
             Stage stage = new Stage();
@@ -55,7 +55,7 @@ public class ManagerController {
     public void btnClientClick(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ClientWindow.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/ClientWindow.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 600, 600);
             Stage stage = new Stage();
@@ -74,7 +74,7 @@ public class ManagerController {
     public void btnTransactionClick(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/TransactionWindow.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/TransactionWindow.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 600, 600);
             Stage stage = new Stage();
