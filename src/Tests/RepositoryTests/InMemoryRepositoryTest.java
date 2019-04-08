@@ -3,6 +3,7 @@ package Tests.RepositoryTests;
 import Domain.Client;
 import Domain.ClientValidator;
 import Domain.Entity;
+import Repository.IRepository;
 import Repository.InMemoryRepository;
 import org.junit.jupiter.api.*;
 
@@ -12,8 +13,7 @@ public class InMemoryRepositoryTest <T extends Entity>{
 
     @Test
     void addAndUpdateShouldAddAndUpdateClients() {
-        ClientValidator validator = new ClientValidator();
-        InMemoryRepository repository = new InMemoryRepository(validator);
+        IRepository<Client> repository = new InMemoryRepository<>(new ClientValidator());
         Client client1 = new Client(1, "TestFirst", "TestFirst", "1234567891234", "12.12.2012", "10.10.2020");
         Client client2 = new Client(2, "TestSecond", "TestSecond", "1234567891234", "12.12.2012", "10.10.2020");
         Client client1Duplicate = new Client(1, "TestFirst", "TestFirst", "1234567891234", "12.12.2012", "10.10.2020");
@@ -34,8 +34,7 @@ public class InMemoryRepositoryTest <T extends Entity>{
 
     @Test
     void deleteShouldRemoveClients() {
-        ClientValidator validator = new ClientValidator();
-        InMemoryRepository repository = new InMemoryRepository(validator);
+        IRepository<Client> repository = new InMemoryRepository<>(new ClientValidator());
         Client client1 = new Client(1, "TestFirst", "TestFirst", "1234567891234", "12.12.2012", "10.10.2020");
         Client client2 = new Client(2, "TestSecond", "TestSecond", "1234567891234", "12.12.2012", "10.10.2020");
 
@@ -49,8 +48,7 @@ public class InMemoryRepositoryTest <T extends Entity>{
 
     @Test
     void getAll() {
-        ClientValidator validator = new ClientValidator();
-        InMemoryRepository repository = new InMemoryRepository(validator);
+        IRepository<Client> repository = new InMemoryRepository<>(new ClientValidator());
         Client client1 = new Client(1, "TestFirst", "TestFirst", "1234567891234", "12.12.2012", "10.10.2020");
         Client client2 = new Client(2, "TestSecond", "TestSecond", "1234567891234", "12.12.2012", "10.10.2020");
 
