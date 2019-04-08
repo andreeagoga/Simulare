@@ -1,5 +1,8 @@
 package Domain;
 
+import Domain.IValidator;
+import Domain.Medicine;
+
 public class MedicineValidator implements IValidator<Medicine> {
 
     /**
@@ -25,7 +28,7 @@ public class MedicineValidator implements IValidator<Medicine> {
             errors +="You need to have/not have recipe (choose true or false)\n";
         }
         if(!errors.isEmpty()){
-            throw new RuntimeException(errors);
+            throw new ExceptionValidatorDomain("Nu s-a validat"+errors);
         }
     }
 }

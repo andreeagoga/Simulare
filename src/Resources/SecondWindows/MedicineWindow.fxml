@@ -8,6 +8,7 @@
 <?import javafx.scene.control.CheckBox?>
 
 
+<?import javafx.scene.control.Spinner?>
 <HBox fx:controller="UI.SecondControllers.MedicineController"
       xmlns:fx="http://javafx.com/fxml" alignment="center">
 
@@ -46,6 +47,7 @@
                 </TableColumn>
             </columns>
         </TableView>
+
         <TextField fx:id="txtMedicineId" promptText="ID"/>
         <TextField fx:id="txtMedicineName" promptText="Name"/>
         <TextField fx:id="txtMedicineFirstName" promptText="First Name"/>
@@ -56,7 +58,6 @@
         <Button fx:id="btnAddAndUpdateMedicine" text="Add/Update Medicine" onAction="#btnAddAndUpdateMedicineClick"/>
         <Button fx:id="btnRemoveMedicine" text="Remove Medicine" onAction="#btnRemoveMedicineClick"/>
         <Button fx:id="btnGetAllMedicine" text="Get All Medicines" onAction="#btnGetAllMedicinesClick"/>
-        <!--<TextField fx:id="txtMedicineSearch" promptText="Medicine Search"/>-->
         <Button fx:id="btnMedicineSearch" text="Search client" onAction="#btnSearchMedicineClick"/>
         <Button fx:id="btnMedicineSort" text="Sort medicines" onAction="#btnSortMedicinesClick"/>
         <Button fx:id="btnMedicineExpensive" text="Increase percentage" onAction="#btnIncreaseMedicinesClick"/>

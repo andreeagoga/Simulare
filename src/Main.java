@@ -10,12 +10,9 @@ import Service.MedicineService;
 import Service.TransactionService;
 import UI.*;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 
@@ -44,7 +41,7 @@ public class Main extends Application {
         clientService.addAndUpdate(2, "Maria", "B", "2234567891234", "13.10.2010", "12.13.2019");
         clientService.addAndUpdate(3, "Ioana", "C", "3234567891234", "14.10.2010", "12.14.2019");
 
-        TransactionService transactionService = new TransactionService(transactionRepository);
+        TransactionService transactionService = new TransactionService(transactionRepository, medicineRepository);
         transactionService.addAndUpdate(1, 1, 1, 5, "12.12.2012","10:00");
         transactionService.addAndUpdate(2, 3, 3, 15, "12.12.2012","12:00");
         transactionService.addAndUpdate(3, 6, 6, 25, "12.12.2012","10:00");

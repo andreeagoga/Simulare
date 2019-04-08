@@ -33,7 +33,6 @@ public class ClientController {
     public Button btnGetAllClient;
     public Button btnClientSearch;
     public TextField txtClientSearch;
-    public Button btnClientSort;
 
     private ClientService clientService;
     private ObservableList<Client> client = FXCollections.observableArrayList();
@@ -114,6 +113,4 @@ public class ClientController {
         }
     }
 
-    public void btnSortClient(ActionEvent actionEvent) {
-    }
 }

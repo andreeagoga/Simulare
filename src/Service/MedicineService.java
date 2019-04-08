@@ -1,9 +1,11 @@
 package Service;
 
 import Domain.Medicine;
+import Domain.Transaction;
 import Repository.IRepository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class MedicineService {

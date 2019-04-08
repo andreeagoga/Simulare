@@ -33,7 +33,7 @@ public class ClientValidator implements IValidator<Client> {
             errors += "The date of registration is not in a correct format!\n";
         }
         if(!errors.isEmpty()){
-            throw new RuntimeException(errors);
+            throw new ExceptionValidatorDomain("Nu s-a validat"+errors);
         }
     }
 }

@@ -124,41 +124,41 @@ public class TransactionController {
         }
     }
 
-    public void btnTransactionTimeClick(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/TransactionTimeWindow.fxml"));
-
-            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-            Stage stage = new Stage();
-            stage.setTitle("Show transaction from a time interval");
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            TransactionTimpeController controller =  fxmlLoader.getController();
-            controller.setTransactionService(transactionService);
-            stage.showAndWait();
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window", e);
-        }
-    }
-
-    public void btnTransactionPrice(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/TransactionPriceWindow.fxml"));
-
-            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-            Stage stage = new Stage();
-            stage.setTitle("Show transaction price after increase");
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            TransactionPriceController controller =  fxmlLoader.getController();
-            controller.setTransactionService(transactionService);
-            stage.showAndWait();
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window", e);
-        }
-    }
+//    public void btnTransactionTimeClick(ActionEvent actionEvent) {
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("/TransactionTimeWindow.fxml"));
+//
+//            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+//            Stage stage = new Stage();
+//            stage.setTitle("Show transaction from a time interval");
+//            stage.setScene(scene);
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            TransactionTimeController controller =  fxmlLoader.getController();
+//            controller.setTransactionService(transactionService);
+//            stage.showAndWait();
+//        } catch (IOException e) {
+//            Logger logger = Logger.getLogger(getClass().getName());
+//            logger.log(Level.SEVERE, "Failed to create new Window", e);
+//        }
+//    }
+//
+//    public void btnTransactionPrice(ActionEvent actionEvent) {
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("/TransactionPriceWindow.fxml"));
+//
+//            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+//            Stage stage = new Stage();
+//            stage.setTitle("Show transaction price after increase");
+//            stage.setScene(scene);
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            TransactionPriceController controller =  fxmlLoader.getController();
+//            controller.setTransactionService(transactionService);
+//            stage.showAndWait();
+//        } catch (IOException e) {
+//            Logger logger = Logger.getLogger(getClass().getName());
+//            logger.log(Level.SEVERE, "Failed to create new Window", e);
+//        }
+//    }
 }

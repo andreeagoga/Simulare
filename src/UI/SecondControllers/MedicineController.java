@@ -44,6 +44,7 @@ public class MedicineController {
     public Button btnMedicineSort;
     public Button btnMedicineExpensive;
 
+
     private MedicineService medicineService;
     private ObservableList<Medicine> medicine = FXCollections.observableArrayList();
 
@@ -114,7 +115,7 @@ public class MedicineController {
     public void btnSearchMedicineClick(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/MedicineSearchWindow.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/ThirdWindows/MedicineSearchWindow.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 600, 600);
             Stage stage = new Stage();
@@ -122,58 +123,49 @@ public class MedicineController {
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             MedicineSearchController controller =  fxmlLoader.getController();
-            controller.setMedicineService(medicineService);
+            controller.setService(medicineService);
             stage.showAndWait();
         } catch (IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window", e);
         }
+    }
+
+//    public void btnSortMedicinesClick(ActionEvent actionEvent) {
 //        try {
-//            String option = txtMedicineSearch.getText();
-//            List<Medicine> foundMedicines = medicineService.searchMedicine(option);
-//            medicine.clear();
-//            medicine.addAll(foundMedicines);
-//            txtMedicineSearch.clear();
-//        } catch (RuntimeException rex) {
-//            Common.showValidationError(rex.getMessage());
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/ThirdWindows/MedicineSortWindow.fxml"));
+//
+//            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+//            Stage stage = new Stage();
+//            stage.setTitle("Sort medicines");
+//            stage.setScene(scene);
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            MedicineSortController controller =  fxmlLoader.getController();
+//            controller.setService(medicineService);
+//            stage.showAndWait();
+//        } catch (IOException e) {
+//            Logger logger = Logger.getLogger(getClass().getName());
+//            logger.log(Level.SEVERE, "Failed to create new Window", e);
 //        }
-    }
-
-    public void btnSortMedicinesClick(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/MedicineSortWindow.fxml"));
-
-            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-            Stage stage = new Stage();
-            stage.setTitle("Sort medicines");
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            MedicineSortController controller =  fxmlLoader.getController();
-            controller.setMedicineService(medicineService);
-            stage.showAndWait();
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window", e);
-        }
-    }
-
-    public void btnIncreaseMedicinesClick(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/MedicinePriceWindow.fxml"));
-
-            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-            Stage stage = new Stage();
-            stage.setTitle("Medicine price increase");
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            MedicinePriceController controller =  fxmlLoader.getController();
-            controller.setMedicineService(medicineService);
-            stage.showAndWait();
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window", e);
-        }
-    }
+//    }
+//
+//    public void btnIncreaseMedicinesClick(ActionEvent actionEvent) {
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/ThirdWindows/MedicinePriceWindow.fxml"));
+//
+//            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+//            Stage stage = new Stage();
+//            stage.setTitle("Medicine price increase");
+//            stage.setScene(scene);
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            MedicinePriceController controller =  fxmlLoader.getController();
+//            controller.setService(medicineService);
+//            stage.showAndWait();
+//        } catch (IOException e) {
+//            Logger logger = Logger.getLogger(getClass().getName());
+//            logger.log(Level.SEVERE, "Failed to create new Window", e);
+//        }
+//    }
 }

@@ -1,5 +1,8 @@
 package Domain;
 
+import Domain.IValidator;
+import Domain.Transaction;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -28,7 +31,7 @@ public class TransactionValidator implements IValidator<Transaction> {
             errors += "The time is not in a correct format!\n";
         }
         if(!errors.isEmpty()){
-            throw new RuntimeException(errors);
+            throw new ExceptionValidatorDomain("Nu s-a validat"+errors);
         }
     }
 }
