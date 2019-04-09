@@ -5,8 +5,10 @@ import Domain.Medicine;
 import Domain.Transaction;
 import Repository.IRepository;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class TransactionService {
@@ -85,32 +87,16 @@ public class TransactionService {
         return transactionsFound;
     }
 
-    public List<Medicine> sortMedicineBySales() {
-        Comparator<Medicine> bySales = (d1, d2) -> {
-            int t1 = 0, t2 = 0;
-            for (Transaction transaction : repository.getAll()) {
-                if (transaction.getId().equals(d1.getId()))
-                    t1 += transaction.getNumberMedicine();
-                if (transaction.getIdMedicine() == (d2.getId()))
-                    t2 += transaction.getNumberMedicine();
-            }
-            return t2 - t1;
-        };
-        List<Medicine> medicines = new ArrayList<>(repositoryMedicine.getAll());
-        medicines.sort(bySales);
-        return medicines;
-    }
-
-    private double totalDiscount(Transaction transaction) {
-        double discount = 0;
-        if (transaction.getIdClientCard() != 0) {
-            if (repositoryMedicine.findById(transaction.getIdMedicine()).isRecipe())
-                discount = (double) (repositoryMedicine.findById(transaction.getIdMedicine()).getPrice() * 15 / 100) * transaction.getNumberMedicine();
-            else
-                discount = (double) (repositoryMedicine.findById(transaction.getIdMedicine()).getPrice() * 10 / 100) * transaction.getNumberMedicine();
-        }
-        return discount;
-    }
+//    private double totalDiscount(Transaction transaction) {
+//        double discount = 0;
+//        if (transaction.getIdClientCard() != 0) {
+//            if (repositoryMedicine.findById(transaction.getIdMedicine()).isRecipe())
+//                discount = (double) (repositoryMedicine.findById(transaction.getIdMedicine()).getPrice() * 15 / 100) * transaction.getNumberMedicine();
+//            else
+//                discount = (double) (repositoryMedicine.findById(transaction.getIdMedicine()).getPrice() * 10 / 100) * transaction.getNumberMedicine();
+//        }
+//        return discount;
+//    }
 
     public List<Transaction> sortClientCardsByDiscount() {
         Comparator<Transaction> byTotalPrice = (o1, o2) -> {
@@ -137,11 +123,22 @@ public class TransactionService {
         };
         List<Transaction> transactions = new ArrayList<>(repository.getAll());
         transactions.sort(byTotalPrice);
-        for(Transaction transaction : transactions) {
-            System.out.println(transactions);
-        }
         return transactions;
+        }
+
+//    public void showTransactionByDate (String start , String finish){
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//        Date begin = data(start);
+//        Date end = data(finish);
+//        int i=0;
+//        for (Transaction transaction : repository.getAll()) {
+//            if(transaction.getDate().
+//            (begin) && transaction.getData().before(end)){
+//                System.out.printf("%d. ID:%-5s |ID-Drug: %-3s |ID-Clientcard: %-3s |Bucati: %-3d |Disccount: %-6.2f   |Pret platit: %-6.2f   |Data si ora:%-10s %n",i,t.getId(),t.getId_drug(),t.getId_clientcard(),t.getBucati(),disccount(t),pretPlatit(t),formatter.format(t.getData_ora()));
+//                i++;
+//            }
+//        }
+//    }
     }
 
 
-}

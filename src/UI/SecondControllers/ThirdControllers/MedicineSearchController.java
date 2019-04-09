@@ -8,8 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.awt.event.ActionEvent;
 import java.util.List;
 
 public class MedicineSearchController {
@@ -17,8 +15,8 @@ public class MedicineSearchController {
     public Button btnCancel;
     public TextField txtMedicineSearch;
     public Button btnSearchMedicine;
-    private MedicineService medicineService;
 
+    private MedicineService medicineService;
     private ObservableList<Medicine> medicine = FXCollections.observableArrayList();
 
     public void setService(MedicineService medicineService) {
@@ -30,8 +28,8 @@ public class MedicineSearchController {
             String option = txtMedicineSearch.getText();
             List<Medicine> foundMedicines = medicineService.searchMedicine(option);
             medicine.clear();
-            medicine.addAll(foundMedicines);
             txtMedicineSearch.clear();
+            medicine.addAll(foundMedicines);
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }

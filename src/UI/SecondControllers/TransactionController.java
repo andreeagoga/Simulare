@@ -46,6 +46,7 @@ public class TransactionController {
     public Button btnTransactionTime;
     public Button btnTransactionTimeRemove;
     public Button btnTransactionPrice;
+    public Button btnTransactionIDCardClientSort;
 
     private TransactionService transactionService;
     private ObservableList<Transaction> transaction = FXCollections.observableArrayList();
@@ -122,6 +123,20 @@ public class TransactionController {
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
+    }
+
+    public void btnIDClientCardDiscountSortClick(ActionEvent actionEvent) {
+        try{
+            transactionService.getAll();
+            transaction.clear();
+            List<Transaction> sortedIDClientCardByDiscount = transactionService.sortClientCardsByDiscount();
+            transaction.addAll(sortedIDClientCardByDiscount);
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
+
+    public void btnTransactionTimeClick(ActionEvent actionEvent) {
     }
 
 //    public void btnTransactionTimeClick(ActionEvent actionEvent) {

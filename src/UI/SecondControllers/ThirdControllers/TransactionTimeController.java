@@ -6,10 +6,14 @@ import javafx.scene.control.Button;
 public class TransactionTimeController {
     public Button btnTransactionTimeShow;
     public Button btnTransactionTimeRemove;
+    public Button btnTransactionPriceShow;
 
     public void btnTransactionTimeShowClick(ActionEvent actionEvent) {
     }
 
     public void btnTransactionTimeRemoveClick(ActionEvent actionEvent) {
+    }
+
+    public void btnTransactionPriceClick(ActionEvent actionEvent) {
     }
 }

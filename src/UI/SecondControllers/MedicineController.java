@@ -3,9 +3,7 @@ package UI.SecondControllers;
 import Domain.Medicine;
 import Service.MedicineService;
 import UI.Common;
-import UI.SecondControllers.ThirdControllers.MedicinePriceController;
 import UI.SecondControllers.ThirdControllers.MedicineSearchController;
-import UI.SecondControllers.ThirdControllers.MedicineSortController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -117,7 +115,7 @@ public class MedicineController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/SecondWindows/ThirdWindows/MedicineSearchWindow.fxml"));
 
-            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+            Scene scene = new Scene(fxmlLoader.load(), 300, 100);
             Stage stage = new Stage();
             stage.setTitle("Medicine search");
             stage.setScene(scene);
@@ -131,24 +129,19 @@ public class MedicineController {
         }
     }
 
-//    public void btnSortMedicinesClick(ActionEvent actionEvent) {
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader();
-//            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/ThirdWindows/MedicineSortWindow.fxml"));
-//
-//            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-//            Stage stage = new Stage();
-//            stage.setTitle("Sort medicines");
-//            stage.setScene(scene);
-//            stage.initModality(Modality.APPLICATION_MODAL);
-//            MedicineSortController controller =  fxmlLoader.getController();
-//            controller.setService(medicineService);
-//            stage.showAndWait();
-//        } catch (IOException e) {
-//            Logger logger = Logger.getLogger(getClass().getName());
-//            logger.log(Level.SEVERE, "Failed to create new Window", e);
-//        }
-//    }
+    public void btnSortMedicinesClick(ActionEvent actionEvent) {
+        try {
+            List<Medicine> sortedMedicines = medicineService.sortMedicineBySales();
+            medicine.clear();
+            medicine.addAll(sortedMedicines);
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        }
+    }
+
+    public void btnIncreaseMedicinesClick(ActionEvent actionEvent) {
+    }
+
 //
 //    public void btnIncreaseMedicinesClick(ActionEvent actionEvent) {
 //        try {

@@ -10,13 +10,15 @@ import java.util.List;
 
 public class MedicineService {
     private IRepository<Medicine> repository;
+    private IRepository<Transaction> repositoryTransactions;
 
     /**
      *  Instantiates a service
      * @param repository the repository used by the server
      */
-    public MedicineService(IRepository<Medicine> repository) {
+    public MedicineService(IRepository<Medicine> repository, IRepository<Transaction> repositoryTransactions) {
         this.repository = repository;
+        this.repositoryTransactions = repositoryTransactions;
     }
 
     /**
@@ -73,5 +75,20 @@ public class MedicineService {
                 medicinesFound.add(medicine);
         }
         return medicinesFound;
+    }
+    public List<Medicine> sortMedicineBySales() {
+        Comparator<Medicine> bySales = (d1, d2) -> {
+            int t1 = 0, t2 = 0;
+            for (Transaction transaction : repositoryTransactions.getAll()) {
+                if (transaction.getId().equals(d1.getId()))
+                    t1 += transaction.getNumberMedicine();
+                if (transaction.getIdMedicine() == (d2.getId()))
+                    t2 += transaction.getNumberMedicine();
+            }
+            return t2 - t1;
+        };
+        List<Medicine> medicines = new ArrayList<>(repository.getAll());
+        medicines.sort(bySales);
+        return medicines;
     }
 }

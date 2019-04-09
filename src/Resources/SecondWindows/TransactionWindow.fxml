@@ -55,6 +55,7 @@
         <Button fx:id="btnRemoveTransaction" text="Remove Transaction" onAction="#btnRemoveTransactionClick"/>
         <Button fx:id="btnGetAllTransaction" text="Get All Transactions" onAction="#btnGetAllTransactionsClick"/>
         <Button fx:id="btnTransactionSearch" text="Search transaction" onAction="#btnTransactionSearchClick"/>
+        <Button fx:id="btnTransactionIDCardClientSort" text="Sort Client Card ID after discount" onAction="#btnIDClientCardDiscountSortClick"/>
         <Button fx:id="btnTransactionTime" text="Time of transactions to show/remove" onAction="#btnTransactionTimeClick"/>
         <Button fx:id="btnTransactionPrice" text="Set the percentage for price increase" onAction="#btnTransactionPrice"/>
     </VBox>
