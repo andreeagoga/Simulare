@@ -1,4 +1,4 @@
-package UI.OldConsoles;
+package UI.OldConsole;
 
 import Domain.Client;
 import Domain.Medicine;

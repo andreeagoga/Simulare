@@ -1,8 +1,5 @@
 package Domain;
 
-import Domain.IValidator;
-import Domain.Transaction;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 

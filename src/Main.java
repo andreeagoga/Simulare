@@ -9,6 +9,7 @@ import Service.ClientService;
 import Service.MedicineService;
 import Service.TransactionService;
 import UI.*;
+import UI.JavaFXConsole.ManagerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -1,11 +1,15 @@
 package Tests.ServiceTests;
 
-import Domain.*;
-import Repository.IRepository;
-import Repository.InMemoryRepository;;
+import Domain.Entity;
+import Domain.Transaction;
+import Domain.TransactionValidator;
+import Repository.InMemoryRepository;
 import Service.TransactionService;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
+
+;
 
 class TransactionServiceTest  <T extends Entity> {
 

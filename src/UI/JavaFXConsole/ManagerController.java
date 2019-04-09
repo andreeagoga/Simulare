@@ -1,12 +1,8 @@
-package UI;
+package UI.JavaFXConsole;
 
 import Service.ClientService;
 import Service.MedicineService;
-
 import Service.TransactionService;
-import UI.SecondControllers.ClientController;
-import UI.SecondControllers.MedicineController;
-import UI.SecondControllers.TransactionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

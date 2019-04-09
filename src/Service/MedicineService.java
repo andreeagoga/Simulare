@@ -7,16 +7,20 @@ import Repository.IRepository;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Stack;
 
 public class MedicineService {
     private IRepository<Medicine> repository;
     private IRepository<Transaction> repositoryTransactions;
+    private Stack<UndoRedoOperation<Medicine>> undoableOperations = new Stack<>();
+    private Stack<UndoRedoOperation<Medicine>> redoableeOperations = new Stack<>();
+
 
     /**
      *  Instantiates a service
      * @param repository the repository used by the server
      */
-    public MedicineService(IRepository<Medicine> repository, IRepository<Transaction> repositoryTransactions) {
+    public MedicineService(IRepository<Medicine> repository) {
         this.repository = repository;
         this.repositoryTransactions = repositoryTransactions;
     }
@@ -90,5 +94,22 @@ public class MedicineService {
         List<Medicine> medicines = new ArrayList<>(repository.getAll());
         medicines.sort(bySales);
         return medicines;
+    }
+
+    public void undo() {
+        if (!undoableOperations.empty()) {
+            UndoRedoOperation<Medicine> lastOperation = undoableOperations.pop();
+            lastOperation.doUndo();
+            redoableeOperations.add(lastOperation);
+
+        }
+    }
+
+    public void redo() {
+        if (!redoableeOperations.empty()) {
+            UndoRedoOperation<Medicine> lastOperation = redoableeOperations.pop();
+            lastOperation.doRedo();
+            undoableOperations.add(lastOperation);
+        }
     }
 }

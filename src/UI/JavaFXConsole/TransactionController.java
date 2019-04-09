@@ -1,10 +1,7 @@
-package UI.SecondControllers;
+package UI.JavaFXConsole;
 
 import Domain.Transaction;
 import Service.TransactionService;
-import UI.Common;
-import UI.SecondControllers.ThirdControllers.TransactionPriceController;
-import UI.SecondControllers.ThirdControllers.TransactionTimeController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,6 +44,11 @@ public class TransactionController {
     public Button btnTransactionTimeRemove;
     public Button btnTransactionPrice;
     public Button btnTransactionIDCardClientSort;
+    public TextField txtTransactionEndDateShow;
+    public TextField txtTransactionStartDateShow;
+    public Button btnTransactionTimeShow;
+    public TextField txtTransactionStartDateRemove;
+    public TextField txtTransactionEndDateRemove;
 
     private TransactionService transactionService;
     private ObservableList<Transaction> transaction = FXCollections.observableArrayList();
@@ -136,44 +138,14 @@ public class TransactionController {
         }
     }
 
-    public void btnTransactionTimeClick(ActionEvent actionEvent) {
+
+    public void btnTransactionPrice(ActionEvent actionEvent) {
     }
 
-//    public void btnTransactionTimeClick(ActionEvent actionEvent) {
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader();
-//            fxmlLoader.setLocation(getClass().getResource("/TransactionTimeWindow.fxml"));
-//
-//            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-//            Stage stage = new Stage();
-//            stage.setTitle("Show transaction from a time interval");
-//            stage.setScene(scene);
-//            stage.initModality(Modality.APPLICATION_MODAL);
-//            TransactionTimeController controller =  fxmlLoader.getController();
-//            controller.setTransactionService(transactionService);
-//            stage.showAndWait();
-//        } catch (IOException e) {
-//            Logger logger = Logger.getLogger(getClass().getName());
-//            logger.log(Level.SEVERE, "Failed to create new Window", e);
-//        }
-//    }
-//
-//    public void btnTransactionPrice(ActionEvent actionEvent) {
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader();
-//            fxmlLoader.setLocation(getClass().getResource("/TransactionPriceWindow.fxml"));
-//
-//            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-//            Stage stage = new Stage();
-//            stage.setTitle("Show transaction price after increase");
-//            stage.setScene(scene);
-//            stage.initModality(Modality.APPLICATION_MODAL);
-//            TransactionPriceController controller =  fxmlLoader.getController();
-//            controller.setTransactionService(transactionService);
-//            stage.showAndWait();
-//        } catch (IOException e) {
-//            Logger logger = Logger.getLogger(getClass().getName());
-//            logger.log(Level.SEVERE, "Failed to create new Window", e);
-//        }
-//    }
+    public void btnTransactionTimeRemoveClick(ActionEvent actionEvent) {
+    }
+
+    public void btnTransactionTimeShowClick(ActionEvent actionEvent) {
+    }
+
 }

@@ -1,9 +1,7 @@
-package UI.SecondControllers;
+package UI.JavaFXConsole;
 
 import Domain.Medicine;
 import Service.MedicineService;
-import UI.Common;
-import UI.SecondControllers.ThirdControllers.MedicineSearchController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +39,7 @@ public class MedicineController {
     public TextField txtMedicineSearch;
     public Button btnMedicineSort;
     public Button btnMedicineExpensive;
+    public TextField txtMedicineExpensive;
 
 
     private MedicineService medicineService;
@@ -112,20 +111,13 @@ public class MedicineController {
 
     public void btnSearchMedicineClick(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/ThirdWindows/MedicineSearchWindow.fxml"));
-
-            Scene scene = new Scene(fxmlLoader.load(), 300, 100);
-            Stage stage = new Stage();
-            stage.setTitle("Medicine search");
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            MedicineSearchController controller =  fxmlLoader.getController();
-            controller.setService(medicineService);
-            stage.showAndWait();
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window", e);
+            String option = txtMedicineSearch.getText();
+            List<Medicine> foundMedicines = medicineService.searchMedicine(option);
+            medicine.clear();
+            txtMedicineSearch.clear();
+            medicine.addAll(foundMedicines);
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
         }
     }
 
@@ -142,23 +134,4 @@ public class MedicineController {
     public void btnIncreaseMedicinesClick(ActionEvent actionEvent) {
     }
 
-//
-//    public void btnIncreaseMedicinesClick(ActionEvent actionEvent) {
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader();
-//            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/ThirdWindows/MedicinePriceWindow.fxml"));
-//
-//            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-//            Stage stage = new Stage();
-//            stage.setTitle("Medicine price increase");
-//            stage.setScene(scene);
-//            stage.initModality(Modality.APPLICATION_MODAL);
-//            MedicinePriceController controller =  fxmlLoader.getController();
-//            controller.setService(medicineService);
-//            stage.showAndWait();
-//        } catch (IOException e) {
-//            Logger logger = Logger.getLogger(getClass().getName());
-//            logger.log(Level.SEVERE, "Failed to create new Window", e);
-//        }
-//    }
 }

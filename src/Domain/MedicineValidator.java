@@ -1,8 +1,5 @@
 package Domain;
 
-import Domain.IValidator;
-import Domain.Medicine;
-
 public class MedicineValidator implements IValidator<Medicine> {
 
     /**

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 
 
-<HBox fx:controller="UI.SecondControllers.ClientController"
+<HBox fx:controller="UI.JavaFXConsole.ClientController"
       xmlns:fx="http://javafx.com/fxml" alignment="center">
 
 

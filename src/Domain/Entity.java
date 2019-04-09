@@ -24,7 +24,7 @@ public abstract class Entity {
 
     @Override
     public String toString() {
-        return "Entity{" +
+        return "Domain.Entity{" +
                 "id='" + id + '\'' +
                 '}';
     }

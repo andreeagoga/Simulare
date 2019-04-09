@@ -6,8 +6,6 @@ import Repository.InMemoryRepository;
 import Service.MedicineService;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class MedicineServiceTest {
@@ -15,8 +13,8 @@ class MedicineServiceTest {
     @Test
     void addAndUpdateServiceShouldAddAndUpdateMedicine() {
         MedicineValidator validator = new MedicineValidator();
-        InMemoryRepository repository = new InMemoryRepository(validator);
-        MedicineService medicineService = new MedicineService(repository);
+        InMemoryRepository repositoryM = new InMemoryRepository(validator);
+        MedicineService medicineService = new MedicineService(repositoryM);
         Medicine medicine1 = new Medicine(1,"FirstMedicine", "FirstMedicine", "FirstMedicine", 5, false);
 
         medicineService.addAndUpdate(1,"FirstMedicine", "FirstMedicine", "FirstMedicine", 5, false);
@@ -27,8 +25,8 @@ class MedicineServiceTest {
     @Test
     void deleteServiceShouldRemoveMedicine() {
         MedicineValidator validator = new MedicineValidator();
-        InMemoryRepository repository = new InMemoryRepository(validator);
-        MedicineService medicineService = new MedicineService(repository);
+        InMemoryRepository repositoryM = new InMemoryRepository(validator);
+        MedicineService medicineService = new MedicineService(repositoryM);
         Medicine medicine1 = new Medicine(1, "FirstMedicine", "FirstMedicine", "FirstMedicine", 5, false);
 
         medicineService.addAndUpdate(1, "FirstMedicine", "FirstMedicine", "FirstMedicine", 5, false);
@@ -40,8 +38,8 @@ class MedicineServiceTest {
     @Test
     void getAllServiceShouldGetAllMedicines() {
         MedicineValidator validator = new MedicineValidator();
-        InMemoryRepository repository = new InMemoryRepository(validator);
-        MedicineService medicineService = new MedicineService(repository);
+        InMemoryRepository repositoryM = new InMemoryRepository(validator);
+        MedicineService medicineService = new MedicineService(repositoryM);
         Medicine medicine1 = new Medicine(1, "FirstMedicine", "FirstMedicine", "FirstMedicine", 5, false);
         Medicine medicine2 = new Medicine(2, "SecondMedicine", "SecondMedicine", "SecondMedicine", 6, true);
 

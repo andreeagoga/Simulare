@@ -1,10 +1,10 @@
 package Service;
 
-import Domain.Client;
 import Domain.Medicine;
 import Domain.Transaction;
 import Repository.IRepository;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -87,17 +87,6 @@ public class TransactionService {
         return transactionsFound;
     }
 
-//    private double totalDiscount(Transaction transaction) {
-//        double discount = 0;
-//        if (transaction.getIdClientCard() != 0) {
-//            if (repositoryMedicine.findById(transaction.getIdMedicine()).isRecipe())
-//                discount = (double) (repositoryMedicine.findById(transaction.getIdMedicine()).getPrice() * 15 / 100) * transaction.getNumberMedicine();
-//            else
-//                discount = (double) (repositoryMedicine.findById(transaction.getIdMedicine()).getPrice() * 10 / 100) * transaction.getNumberMedicine();
-//        }
-//        return discount;
-//    }
-
     public List<Transaction> sortClientCardsByDiscount() {
         Comparator<Transaction> byTotalPrice = (o1, o2) -> {
             int t1 = 0;
@@ -124,21 +113,42 @@ public class TransactionService {
         List<Transaction> transactions = new ArrayList<>(repository.getAll());
         transactions.sort(byTotalPrice);
         return transactions;
-        }
-
-//    public void showTransactionByDate (String start , String finish){
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//        Date begin = data(start);
-//        Date end = data(finish);
-//        int i=0;
-//        for (Transaction transaction : repository.getAll()) {
-//            if(transaction.getDate().
-//            (begin) && transaction.getData().before(end)){
-//                System.out.printf("%d. ID:%-5s |ID-Drug: %-3s |ID-Clientcard: %-3s |Bucati: %-3d |Disccount: %-6.2f   |Pret platit: %-6.2f   |Data si ora:%-10s %n",i,t.getId(),t.getId_drug(),t.getId_clientcard(),t.getBucati(),disccount(t),pretPlatit(t),formatter.format(t.getData_ora()));
-//                i++;
-//            }
-//        }
-//    }
     }
+
+    public List<Transaction> showTransactionByDate(String startDate, String endDate) throws ParseException {
+        ArrayList<Transaction> foundTransactions = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        Date date1 = sdf.parse(startDate);
+        Date date2 = sdf.parse(endDate);
+        List<Transaction> transactions = this.getAll();
+
+        for (Transaction transaction : transactions) {
+            Date currentTranDate = sdf.parse(transaction.getDate());
+            if (currentTranDate.compareTo(date1) >= 0 && currentTranDate.compareTo(date2) <= 0) {
+                foundTransactions.add(transaction);
+            }
+        }
+        return foundTransactions;
+    }
+
+    public List<Transaction> removeTransactionByDate(String startDate, String endDate) throws ParseException {
+        ArrayList<Transaction> foundTransactions = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        Date date1 = sdf.parse(startDate);
+        Date date2 = sdf.parse(endDate);
+        List<Transaction> transactions = this.getAll();
+
+        for (Transaction transaction : transactions) {
+            Date currentTranDate = sdf.parse(transaction.getDate());
+            if (currentTranDate.compareTo(date1) >= 0 && currentTranDate.compareTo(date2) <= 0) {
+                foundTransactions.remove(transaction);
+            }
+        }
+        return foundTransactions;
+    }
+
+}
+
+
 
 

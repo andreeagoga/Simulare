@@ -7,9 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.CheckBox?>
 
-
-<?import javafx.scene.control.Spinner?>
-<HBox fx:controller="UI.SecondControllers.MedicineController"
+<HBox fx:controller="UI.JavaFXConsole.MedicineController"
       xmlns:fx="http://javafx.com/fxml" alignment="center">
 
     <VBox>
@@ -58,8 +56,10 @@
         <Button fx:id="btnAddAndUpdateMedicine" text="Add/Update Medicine" onAction="#btnAddAndUpdateMedicineClick"/>
         <Button fx:id="btnRemoveMedicine" text="Remove Medicine" onAction="#btnRemoveMedicineClick"/>
         <Button fx:id="btnGetAllMedicine" text="Get All Medicines" onAction="#btnGetAllMedicinesClick"/>
+        <TextField fx:id="txtMedicineSearch" promptText="Medicine to search"/>
         <Button fx:id="btnMedicineSearch" text="Search medicine" onAction="#btnSearchMedicineClick"/>
         <Button fx:id="btnMedicineSort" text="Sort medicines" onAction="#btnSortMedicinesClick"/>
+        <TextField fx:id="txtMedicineExpensive" promptText="Increase medicine percent"/>
         <Button fx:id="btnMedicineExpensive" text="Increase percentage" onAction="#btnIncreaseMedicinesClick"/>
     </VBox>
 </HBox>
