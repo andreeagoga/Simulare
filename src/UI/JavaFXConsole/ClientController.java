@@ -33,6 +33,8 @@ public class ClientController {
     public Button btnGetAllClient;
     public Button btnClientSearch;
     public TextField txtClientSearch;
+    public Button btnUndoClient;
+    public Button btnRedoClient;
 
     private ClientService clientService;
     private ObservableList<Client> client = FXCollections.observableArrayList();
@@ -48,6 +50,11 @@ public class ClientController {
             tblClient.setItems(client);
         });
     }
+
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnAddAndUpdateClientClick(ActionEvent actionEvent) {
         try {
             int id = Integer.parseInt(txtClientId.getText());
@@ -72,6 +79,10 @@ public class ClientController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnRemoveClientClick(ActionEvent actionEvent) {
         try {
             int id = Integer.parseInt(txtClientId.getText());
@@ -85,6 +96,10 @@ public class ClientController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnGetAllClientsClick(ActionEvent actionEvent) {
         try {
             clientService.getAll();
@@ -101,6 +116,10 @@ public class ClientController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnSearchClient(ActionEvent actionEvent) {
         try {
             String option = txtClientSearch.getText();
@@ -113,4 +132,17 @@ public class ClientController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
+    public void btnRedoClient(ActionEvent actionEvent) {
+    }
+
+    /**
+     *
+     * @param actionEvent
+     */
+    public void btnUndoClient(ActionEvent actionEvent) {
+    }
 }

@@ -40,6 +40,8 @@ public class MedicineController {
     public Button btnMedicineSort;
     public Button btnMedicineExpensive;
     public TextField txtMedicineExpensive;
+    public Button btnUndoMedicine;
+    public Button btnRedoMedicine;
 
 
     private MedicineService medicineService;
@@ -58,6 +60,11 @@ public class MedicineController {
         });
 
     }
+
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnAddAndUpdateMedicineClick(ActionEvent actionEvent) {
         try {
             int id = Integer.parseInt(txtMedicineId.getText());
@@ -81,6 +88,10 @@ public class MedicineController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnRemoveMedicineClick(ActionEvent actionEvent) {
         try {
             int id = Integer.parseInt(txtMedicineId.getText());
@@ -93,6 +104,10 @@ public class MedicineController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnGetAllMedicinesClick(ActionEvent actionEvent) {
         try {
             medicineService.getAll();
@@ -109,6 +124,10 @@ public class MedicineController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnSearchMedicineClick(ActionEvent actionEvent) {
         try {
             String option = txtMedicineSearch.getText();
@@ -121,6 +140,10 @@ public class MedicineController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnSortMedicinesClick(ActionEvent actionEvent) {
         try {
             List<Medicine> sortedMedicines = medicineService.sortMedicineBySales();
@@ -131,7 +154,31 @@ public class MedicineController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnIncreaseMedicinesClick(ActionEvent actionEvent) {
+    }
+
+    /**
+     *
+     * @param actionEvent
+     */
+    public void btnUndoMedicineClick(ActionEvent actionEvent) {
+        medicineService.undo();
+        medicine.clear();
+        medicine.addAll(medicineService.getAll());
+    }
+
+    /**
+     *
+     * @param actionEvent
+     */
+    public void btnRedoMedicineClick(ActionEvent actionEvent) {
+        medicineService.redo();
+        medicine.clear();
+        medicine.addAll(medicineService.getAll());
     }
 
 }

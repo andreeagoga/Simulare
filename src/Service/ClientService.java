@@ -1,12 +1,13 @@
 package Service;
 
 import Domain.Client;
+import Domain.Entity;
 import Repository.IRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientService {
+public class ClientService <T extends Entity> {
 
     private IRepository<Client> repository;
 
@@ -67,6 +68,11 @@ public class ClientService {
         return repository.getAll();
     }
 
+    /**
+     *
+     * @param option
+     * @return
+     */
     public List<Client> searchClient(String option){
         List<Client> clientsFound = new ArrayList<>();
         for(Client client : repository.getAll()){

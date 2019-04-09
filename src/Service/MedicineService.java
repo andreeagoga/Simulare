@@ -13,8 +13,7 @@ public class MedicineService {
     private IRepository<Medicine> repository;
     private IRepository<Transaction> repositoryTransactions;
     private Stack<UndoRedoOperation<Medicine>> undoableOperations = new Stack<>();
-    private Stack<UndoRedoOperation<Medicine>> redoableeOperations = new Stack<>();
-
+    private Stack<UndoRedoOperation<Medicine>> redoableOperations = new Stack<>();
 
     /**
      *  Instantiates a service
@@ -72,6 +71,11 @@ public class MedicineService {
         return repository.getAll();
     }
 
+    /**
+     *
+     * @param option
+     * @return
+     */
     public List<Medicine> searchMedicine(String option){
         List<Medicine> medicinesFound = new ArrayList<>();
         for(Medicine medicine : repository.getAll()){
@@ -80,6 +84,11 @@ public class MedicineService {
         }
         return medicinesFound;
     }
+
+    /**
+     *
+     * @return
+     */
     public List<Medicine> sortMedicineBySales() {
         Comparator<Medicine> bySales = (d1, d2) -> {
             int t1 = 0, t2 = 0;
@@ -96,18 +105,24 @@ public class MedicineService {
         return medicines;
     }
 
+    /**
+     *
+     */
     public void undo() {
         if (!undoableOperations.empty()) {
             UndoRedoOperation<Medicine> lastOperation = undoableOperations.pop();
             lastOperation.doUndo();
-            redoableeOperations.add(lastOperation);
+            redoableOperations.add(lastOperation);
 
         }
     }
 
+    /**
+     *
+     */
     public void redo() {
-        if (!redoableeOperations.empty()) {
-            UndoRedoOperation<Medicine> lastOperation = redoableeOperations.pop();
+        if (!redoableOperations.empty()) {
+            UndoRedoOperation<Medicine> lastOperation = redoableOperations.pop();
             lastOperation.doRedo();
             undoableOperations.add(lastOperation);
         }

@@ -44,8 +44,8 @@ public class Main extends Application {
 
         TransactionService transactionService = new TransactionService(transactionRepository, medicineRepository);
         transactionService.addAndUpdate(1, 1, 1, 5, "12.12.2012","10:00");
-        transactionService.addAndUpdate(2, 3, 3, 15, "12.12.2012","12:00");
-        transactionService.addAndUpdate(3, 6, 6, 25, "12.12.2012","10:00");
+        transactionService.addAndUpdate(2, 3, 3, 15, "12.12.2013","12:00");
+        transactionService.addAndUpdate(3, 6, 6, 25, "12.12.2014","10:00");
 
         ManagerController managerController = fxmlLoader.getController();
         managerController.setServices(medicineService, clientService, transactionService);

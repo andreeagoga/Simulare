@@ -56,10 +56,19 @@
         <Button fx:id="btnAddAndUpdateMedicine" text="Add/Update Medicine" onAction="#btnAddAndUpdateMedicineClick"/>
         <Button fx:id="btnRemoveMedicine" text="Remove Medicine" onAction="#btnRemoveMedicineClick"/>
         <Button fx:id="btnGetAllMedicine" text="Get All Medicines" onAction="#btnGetAllMedicinesClick"/>
+
         <TextField fx:id="txtMedicineSearch" promptText="Medicine to search"/>
         <Button fx:id="btnMedicineSearch" text="Search medicine" onAction="#btnSearchMedicineClick"/>
+
         <Button fx:id="btnMedicineSort" text="Sort medicines" onAction="#btnSortMedicinesClick"/>
+
         <TextField fx:id="txtMedicineExpensive" promptText="Increase medicine percent"/>
         <Button fx:id="btnMedicineExpensive" text="Increase percentage" onAction="#btnIncreaseMedicinesClick"/>
+
+        <Button fx:id="btnUndoMedicine" text="Undo" onAction="#btnUndoMedicineClick"/>
+        <Button fx:id="btnRedoMedicine" text="Redo" onAction="#btnRedoMedicineClick"/>
+
+
+
     </VBox>
 </HBox>

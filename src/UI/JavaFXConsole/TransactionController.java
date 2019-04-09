@@ -17,6 +17,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,6 +67,10 @@ public class TransactionController {
         });
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnAddAndUpdateTransactionClick(ActionEvent actionEvent) {
         try {
             int id = Integer.parseInt(txtTransactionId.getText());
@@ -87,6 +94,10 @@ public class TransactionController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnRemoveTransactionClick(ActionEvent actionEvent) {
         try {
             int id = Integer.parseInt(txtTransactionId.getText());
@@ -99,6 +110,10 @@ public class TransactionController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnGetAllTransactionsClick(ActionEvent actionEvent) {
         try {
             transactionService.getAll();
@@ -115,6 +130,10 @@ public class TransactionController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnTransactionSearchClick(ActionEvent actionEvent) {
         try {
             String option = txtTransactionSearch.getText();
@@ -127,6 +146,10 @@ public class TransactionController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnIDClientCardDiscountSortClick(ActionEvent actionEvent) {
         try{
             transactionService.getAll();
@@ -138,14 +161,51 @@ public class TransactionController {
         }
     }
 
-
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnTransactionPrice(ActionEvent actionEvent) {
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnTransactionTimeRemoveClick(ActionEvent actionEvent) {
+        try {
+            String date1 = txtTransactionStartDateRemove.getText();
+            String date2 = txtTransactionEndDateRemove.getText();
+            List<Transaction> foundTransactions = transactionService.removeTransactionByDate(date1, date2);
+            transaction.clear();
+            transaction.remove(foundTransactions);
+            txtTransactionStartDateRemove.clear();
+            txtTransactionEndDateRemove.clear();
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnTransactionTimeShowClick(ActionEvent actionEvent) {
+        try {
+            String date1 = txtTransactionStartDateShow.getText();
+            String date2 = txtTransactionEndDateShow.getText();
+            List<Transaction> foundTransactions = transactionService.showTransactionByDate(date1, date2);
+            transaction.clear();
+            transaction.addAll(foundTransactions);
+            txtTransactionStartDateShow.clear();
+            txtTransactionEndDateShow.clear();
+        } catch (RuntimeException rex) {
+            Common.showValidationError(rex.getMessage());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 }

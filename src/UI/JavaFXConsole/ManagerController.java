@@ -29,10 +29,14 @@ public class ManagerController {
         this.transactionService = transactionService;
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnMedicineClick(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/MedicineWindow.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/MedicineWindow.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 600, 600);
             Stage stage = new Stage();
@@ -48,10 +52,14 @@ public class ManagerController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnClientClick(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/ClientWindow.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ClientWindow.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 600, 600);
             Stage stage = new Stage();
@@ -67,10 +75,14 @@ public class ManagerController {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void btnTransactionClick(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/SecondWindows/TransactionWindow.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/TransactionWindow.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 600, 600);
             Stage stage = new Stage();

@@ -64,7 +64,6 @@ public class TransactionService {
 
     /**
      * Remove a transaction from the repository
-     *
      * @param id the id of the transaction to remove
      */
     public void delete(Integer id) {
@@ -78,6 +77,11 @@ public class TransactionService {
         return repository.getAll();
     }
 
+    /**
+     *
+     * @param option
+     * @return
+     */
     public List<Transaction> searchTransaction(String option) {
         List<Transaction> transactionsFound = new ArrayList<>();
         for (Transaction transaction : repository.getAll()) {
@@ -87,6 +91,10 @@ public class TransactionService {
         return transactionsFound;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Transaction> sortClientCardsByDiscount() {
         Comparator<Transaction> byTotalPrice = (o1, o2) -> {
             int t1 = 0;
@@ -115,6 +123,13 @@ public class TransactionService {
         return transactions;
     }
 
+    /**
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     * @throws ParseException
+     */
     public List<Transaction> showTransactionByDate(String startDate, String endDate) throws ParseException {
         ArrayList<Transaction> foundTransactions = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
@@ -131,6 +146,13 @@ public class TransactionService {
         return foundTransactions;
     }
 
+    /**
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     * @throws ParseException
+     */
     public List<Transaction> removeTransactionByDate(String startDate, String endDate) throws ParseException {
         ArrayList<Transaction> foundTransactions = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");

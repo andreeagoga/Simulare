@@ -52,11 +52,17 @@
         <TextField fx:id="txtClientCNP" promptText="CNP"/>
         <TextField fx:id="txtClientDateOfBirth" promptText="Date of birth"/>
         <TextField fx:id="txtClientDateOfRegistration" promptText="Date of registration"/>
+
         <Button fx:id="btnAddAndUpdateClient" text="Add/Update Client" onAction="#btnAddAndUpdateClientClick"/>
         <Button fx:id="btnRemoveClient" text="Remove Client" onAction="#btnRemoveClientClick"/>
         <Button fx:id="btnGetAllClient" text="Get All Clients" onAction="#btnGetAllClientsClick"/>
+
         <TextField fx:id="txtClientSearch" promptText="Client Search"/>
         <Button fx:id="btnClientSearch" text="Search client" onAction="#btnSearchClient"/>
+
+        <Button fx:id="btnUndoClient" text="Undo" onAction="#btnUndoClient"/>
+        <Button fx:id="btnRedoClient" text="Redo" onAction="#btnRedoClient"/>
+
 
     </VBox>
 </HBox>
