@@ -43,6 +43,7 @@
                         <PropertyValueFactory property="recipe" />
                     </cellValueFactory>
                 </TableColumn>
+
             </columns>
         </TableView>
 

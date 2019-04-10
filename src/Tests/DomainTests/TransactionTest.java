@@ -9,9 +9,9 @@ class TransactionTest {
 
     @Test
     void equalsShouldCompareTheTransactionCorectly() {
-        Transaction transaction1 = new Transaction(1, 1,1,5, "12.12.2012","10:00");
-        Transaction transaction2 = new Transaction(1, 1,1,5, "12.12.2012","10:00");
-        Transaction transaction3 = new Transaction(3, 1,1,10, "12.12.2012","10:00");
+        Transaction transaction1 = new Transaction(1, 1,1,5, "12.12.2012","10:00",true);
+        Transaction transaction2 = new Transaction(1, 1,1,5, "12.12.2012","10:00", true);
+        Transaction transaction3 = new Transaction(3, 1,1,10, "12.12.2012","10:00", false);
 
         assertEquals(transaction1, transaction2);
         assertEquals(transaction2, transaction1);
@@ -22,7 +22,7 @@ class TransactionTest {
     }
     @Test
     void constructorShouldSetAllTheFildsCorectly(){
-        Transaction transaction1 = new Transaction(1, 1,1,5, "12.12.2012","10:00");
+        Transaction transaction1 = new Transaction(1, 1,1,5, "12.12.2012","10:00", true);
 
         assertEquals(1, transaction1.getId());
         assertEquals(1, transaction1.getIdMedicine());
@@ -34,7 +34,7 @@ class TransactionTest {
 
     @Test
     void settersShouldSetFieldsCorrectly() {
-        Transaction transaction1 = new Transaction(1, 1, 1, 5, "12.12.2010", "12:00");
+        Transaction transaction1 = new Transaction(1, 1, 1, 5, "12.12.2010", "12:00", true);
 
         transaction1.setIdMedicine(1);
         transaction1.setIdClientCard(1);
@@ -52,7 +52,7 @@ class TransactionTest {
 
     @Test
     void toStringShouldReturnALongEnoughString() {
-        Transaction transaction = new Transaction(1, 1, 1, 6, "12.12.2010", "12:00");
+        Transaction transaction = new Transaction(1, 1, 1, 6, "12.12.2010", "12:00", true);
 
         assertTrue(transaction.toString().length() > 10);
     }

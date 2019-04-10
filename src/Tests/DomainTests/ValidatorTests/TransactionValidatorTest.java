@@ -13,7 +13,7 @@ public class TransactionValidatorTest {
     @Test
     void validateTransaction() {
         TransactionValidator transactionV = new TransactionValidator();
-        Transaction transaction = new Transaction(1,1,1,1,"12.12.2019","12:00");
+        Transaction transaction = new Transaction(1,1,1,1,"12.12.2019","12:00", false);
         transactionV.validate(transaction);
         //assertThrows(ExceptionValidatorDomain.class, () -> transactionV.validateTransaction(transaction));
         assertDoesNotThrow(() -> transactionV.validate(transaction));

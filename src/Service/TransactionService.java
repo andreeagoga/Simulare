@@ -1,15 +1,14 @@
 package Service;
 
+import Domain.Client;
 import Domain.Medicine;
 import Domain.Transaction;
 import Repository.IRepository;
 
+import javax.sql.rowset.serial.SerialException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class TransactionService {
 
@@ -37,7 +36,7 @@ public class TransactionService {
      * @param date           the date of the transaction to add and update
      * @param hour           the hour of the transaction to add and update
      */
-    public void addAndUpdate(Integer id, Integer idMedicine, Integer idClientCard, Integer numberMedicine, String date, String hour) {
+    public void addAndUpdate(Integer id, Integer idMedicine, Integer idClientCard, Integer numberMedicine, String date, String hour, boolean withRecipe) {
         Transaction transaction = repository.findById(id);
         if (transaction != null) {
             if (idMedicine != null) {
@@ -56,14 +55,17 @@ public class TransactionService {
             if (hour.isEmpty()) {
                 hour = transaction.getHour();
             }
+                withRecipe = !!transaction.isWithRecipe();
+
 
         }
-        Transaction transaction1 = new Transaction(id, idMedicine, idClientCard, numberMedicine, date, hour);
+        Transaction transaction1 = new Transaction(id, idMedicine, idClientCard, numberMedicine, date, hour, withRecipe);
         repository.addAndUpdate(transaction1);
     }
 
     /**
      * Remove a transaction from the repository
+     *
      * @param id the id of the transaction to remove
      */
     public void delete(Integer id) {
@@ -71,6 +73,8 @@ public class TransactionService {
     }
 
     /**
+     * Show all transactions
+     *
      * @return the list with all the transactions
      */
     public List<Transaction> getAll() {
@@ -78,9 +82,10 @@ public class TransactionService {
     }
 
     /**
+     * Search a transaction after the given input
      *
-     * @param option
-     * @return
+     * @param option the input to search after
+     * @return the list of transactions which contain the given input
      */
     public List<Transaction> searchTransaction(String option) {
         List<Transaction> transactionsFound = new ArrayList<>();
@@ -92,43 +97,39 @@ public class TransactionService {
     }
 
     /**
+     * Sort client card of transaction after discount
      *
-     * @return
+     * @return transactions sorted by client cards and the value of the discount
      */
     public List<Transaction> sortClientCardsByDiscount() {
         Comparator<Transaction> byTotalPrice = (o1, o2) -> {
             int t1 = 0;
             int t2 = 0;
-            for (Transaction transaction : repository.getAll()) {
-                if (transaction.getIdClientCard() == (o1.getIdClientCard())) {
-                    if (repositoryMedicine.findById(transaction.getIdMedicine()).isRecipe())
-                        t1 += (repositoryMedicine.findById(transaction.getIdMedicine()).getPrice() * 15 / 100) * transaction.getNumberMedicine();
-                    else {
-                        t1 += (repositoryMedicine.findById(transaction.getIdMedicine()).getPrice() * 10 / 100) * transaction.getNumberMedicine();
-                    }
-                }
-                if (transaction.getIdClientCard() == (o2.getIdClientCard())) {
-                    if (repositoryMedicine.findById(transaction.getIdMedicine()).isRecipe())
-                        t2 += (repositoryMedicine.findById(transaction.getIdMedicine()).getPrice() * 15 / 100) * transaction.getNumberMedicine();
-                    else {
-                        t2 += (repositoryMedicine.findById(transaction.getIdMedicine()).getPrice() * 10 / 100) * transaction.getNumberMedicine();
-                    }
+            Medicine medidicineFromTR1 = this.repositoryMedicine.findById(o1.getIdMedicine());
+            Medicine medidicineFromTR2 = this.repositoryMedicine.findById(o2.getIdMedicine());
 
-                }
-            }
-            return t2 - t1;
+            int discountT1 = medidicineFromTR1.isRecipe() && o1.isWithRecipe() ? 15 : 10;
+            int discountT2 = medidicineFromTR2.isRecipe() && o2.isWithRecipe() ? 15 : 10;
+
+            double transaction1Total = medidicineFromTR1.getPrice() * o1.getNumberMedicine();
+            double transaction2Total = medidicineFromTR2.getPrice() * o2.getNumberMedicine();
+
+            double discountT1Total = transaction1Total * discountT1/100;
+            double discountT2Total = transaction2Total * discountT2/100;
+
+            return (int)discountT2Total - (int)discountT1Total;
         };
         List<Transaction> transactions = new ArrayList<>(repository.getAll());
-        transactions.sort(byTotalPrice);
+        Collections.sort(transactions, byTotalPrice);
         return transactions;
     }
 
     /**
-     *
-     * @param startDate
-     * @param endDate
-     * @return
-     * @throws ParseException
+     * Show transactions between a date interval
+     * @param startDate the start of the interval to search after
+     * @param endDate the end of the interval to search after
+     * @return the transactions between the given interval
+     * @throws ParseException if the format of dates are wrong
      */
     public List<Transaction> showTransactionByDate(String startDate, String endDate) throws ParseException {
         ArrayList<Transaction> foundTransactions = new ArrayList<>();
@@ -147,11 +148,11 @@ public class TransactionService {
     }
 
     /**
-     *
-     * @param startDate
-     * @param endDate
-     * @return
-     * @throws ParseException
+     * Remove transaction between a date interval
+     * @param startDate the start of the interval to remove after
+     * @param endDate the start of the interval to remove after
+     * @return only the transactions which are not in the given interval
+     * @throws ParseException if the format of dates are wrong
      */
     public List<Transaction> removeTransactionByDate(String startDate, String endDate) throws ParseException {
         ArrayList<Transaction> foundTransactions = new ArrayList<>();
@@ -166,8 +167,59 @@ public class TransactionService {
                 foundTransactions.remove(transaction);
             }
         }
-        return foundTransactions;
+        return transactions;
     }
+
+//    /**
+//     *
+//     * @param idMedicine
+//     * @param numberMedicine
+//     * @param idClientCard
+//     * @return
+//     */
+//    public double getPaidPrice(int idMedicine, int numberMedicine, int idClientCard){
+//        List<Medicine> medicines = repositoryMedicine.getAll();
+//
+//        for (Medicine medicine : medicines){
+//            if (medicine.getId() == idMedicine){
+//                double initialPrice = medicine.getPrice() * numberMedicine;
+//                if (idClientCard != 0){
+//                    if (medicine.isRecipe()) return initialPrice - (15.00/100 * initialPrice);
+//                    else return initialPrice - (10.00/100 * initialPrice);
+//                } else return initialPrice;
+//            }
+//        }
+//        throw new ExceptionService("Found no Medicine for this transaction.");
+//}
+//
+//    public List<Transaction> transactionsExpansive(){
+//        List<Transaction> transactions = getAll();
+//        for(Transaction transaction : transactions){
+//            if(transaction.getPaidPriceForTransaction())
+//        }
+//    }
+//
+//    public List<Transaction> displayTransaction() {
+//        int count = 0;
+//        double avg=0;
+//        List<Transaction> transList = new ArrayList<>();
+//        for(Transaction t: repository.getAll()){
+//            Medicine medicineSold = repositoryMedicine.findById(t.getIdMedicine());
+//            avg += t.getDiscount()*t.getPieceTotal()*medicineSold.getPaidPrice();
+//            count ++;
+//        }
+//        avg = avg / count;
+//
+//        for(Transaction t: repository.getAll()){
+//            Medicine medicineSold = repositoryMedicine.findById(t.getIdMedicine());
+//            if ( avg < t.getDiscount()*t.getPieceTotal()*medicineSold.getPaidPrice()){
+//                transList.add(t);
+//            }
+//        }
+//        return transList;
+//}
+
+
 
 }
 

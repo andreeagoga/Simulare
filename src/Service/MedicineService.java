@@ -4,10 +4,7 @@ import Domain.Medicine;
 import Domain.Transaction;
 import Repository.IRepository;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class MedicineService {
     private IRepository<Medicine> repository;
@@ -19,7 +16,7 @@ public class MedicineService {
      *  Instantiates a service
      * @param repository the repository used by the server
      */
-    public MedicineService(IRepository<Medicine> repository) {
+    public MedicineService(IRepository<Medicine> repository, IRepository<Transaction> repositoryTransactions) {
         this.repository = repository;
         this.repositoryTransactions = repositoryTransactions;
     }
@@ -48,9 +45,8 @@ public class MedicineService {
             if (price == 0){
                 price = medicine.getPrice();
             }
-            if (recipe != true && recipe != false){
-                recipe = medicine.isRecipe();
-            }
+                recipe = !!medicine.isRecipe();
+
         }
         Medicine medicine1 = new Medicine(id, name, firstName, producer, price, recipe);
         repository.addAndUpdate(medicine1);
@@ -65,6 +61,7 @@ public class MedicineService {
     }
 
     /**
+     * Show the list with all the medicines
      * @return the list with all medicines
      */
     public List<Medicine> getAll(){
@@ -72,9 +69,9 @@ public class MedicineService {
     }
 
     /**
-     *
-     * @param option
-     * @return
+     * Search a medicine after the given input
+     * @param option the input to search the medicine
+     * @return the medicines with the given input
      */
     public List<Medicine> searchMedicine(String option){
         List<Medicine> medicinesFound = new ArrayList<>();
@@ -86,27 +83,28 @@ public class MedicineService {
     }
 
     /**
-     *
-     * @return
+     * Sort medicine after the sales
+     * @return the sorted medicines
      */
     public List<Medicine> sortMedicineBySales() {
         Comparator<Medicine> bySales = (d1, d2) -> {
             int t1 = 0, t2 = 0;
-            for (Transaction transaction : repositoryTransactions.getAll()) {
-                if (transaction.getId().equals(d1.getId()))
+            for (Transaction transaction : this.repositoryTransactions.getAll()) {
+                if (transaction.getId() == d1.getId())
                     t1 += transaction.getNumberMedicine();
-                if (transaction.getIdMedicine() == (d2.getId()))
+                if (transaction.getIdMedicine() == d2.getId())
                     t2 += transaction.getNumberMedicine();
             }
             return t2 - t1;
+
         };
         List<Medicine> medicines = new ArrayList<>(repository.getAll());
-        medicines.sort(bySales);
+        Collections.sort(medicines, bySales);
         return medicines;
     }
 
     /**
-     *
+     * Undo the last operation
      */
     public void undo() {
         if (!undoableOperations.empty()) {
@@ -118,7 +116,7 @@ public class MedicineService {
     }
 
     /**
-     *
+     * Redo the last operation
      */
     public void redo() {
         if (!redoableOperations.empty()) {

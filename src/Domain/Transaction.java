@@ -5,14 +5,24 @@ import java.util.Objects;
 public class Transaction extends Entity{
     private int idMedicine, idClientCard, numberMedicine;
     private String date, hour;
+    private boolean withRecipe;
 
-    public Transaction(int id, int idMedicine, int idClientCard, int numberMedicine, String date, String hour) {
+    public Transaction(int id, int idMedicine, int idClientCard, int numberMedicine, String date, String hour, boolean withRecipe) {
         super(id);
         this.idMedicine = idMedicine;
         this.idClientCard = idClientCard;
         this.numberMedicine = numberMedicine;
         this.date = date;
         this.hour = hour;
+        this.withRecipe = withRecipe;
+    }
+
+    public boolean isWithRecipe() {
+        return withRecipe;
+    }
+
+    public void setWithRecipe(boolean withRecipe) {
+        this.withRecipe = withRecipe;
     }
 
     @Override
@@ -22,7 +32,7 @@ public class Transaction extends Entity{
 
     @Override
     public String toString() {
-        return idMedicine + " " + idClientCard + " " + numberMedicine + " " + date + " " + hour;
+        return idMedicine + " " + idClientCard + " " + numberMedicine + " " + date + " " + hour + " " + withRecipe;
     }
 
     public int getIdMedicine() {

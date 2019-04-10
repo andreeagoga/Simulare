@@ -25,7 +25,7 @@ public class MedicineValidator implements IValidator<Medicine> {
             errors +="You need to have/not have recipe (choose true or false)\n";
         }
         if(!errors.isEmpty()){
-            throw new ExceptionValidatorDomain("Nu s-a validat"+errors);
+            throw new ExceptionDomain("Nu s-a validat"+errors);
         }
     }
 }

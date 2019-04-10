@@ -14,7 +14,8 @@ class MedicineServiceTest {
     void addAndUpdateServiceShouldAddAndUpdateMedicine() {
         MedicineValidator validator = new MedicineValidator();
         InMemoryRepository repositoryM = new InMemoryRepository(validator);
-        MedicineService medicineService = new MedicineService(repositoryM);
+        InMemoryRepository repositoryT = new InMemoryRepository(validator);
+        MedicineService medicineService = new MedicineService(repositoryM, repositoryT);
         Medicine medicine1 = new Medicine(1,"FirstMedicine", "FirstMedicine", "FirstMedicine", 5, false);
 
         medicineService.addAndUpdate(1,"FirstMedicine", "FirstMedicine", "FirstMedicine", 5, false);
@@ -26,7 +27,8 @@ class MedicineServiceTest {
     void deleteServiceShouldRemoveMedicine() {
         MedicineValidator validator = new MedicineValidator();
         InMemoryRepository repositoryM = new InMemoryRepository(validator);
-        MedicineService medicineService = new MedicineService(repositoryM);
+        InMemoryRepository repositoryT = new InMemoryRepository(validator);
+        MedicineService medicineService = new MedicineService(repositoryM, repositoryT);
         Medicine medicine1 = new Medicine(1, "FirstMedicine", "FirstMedicine", "FirstMedicine", 5, false);
 
         medicineService.addAndUpdate(1, "FirstMedicine", "FirstMedicine", "FirstMedicine", 5, false);
@@ -39,7 +41,8 @@ class MedicineServiceTest {
     void getAllServiceShouldGetAllMedicines() {
         MedicineValidator validator = new MedicineValidator();
         InMemoryRepository repositoryM = new InMemoryRepository(validator);
-        MedicineService medicineService = new MedicineService(repositoryM);
+        InMemoryRepository repositoryT = new InMemoryRepository(validator);
+        MedicineService medicineService = new MedicineService(repositoryM, repositoryT);
         Medicine medicine1 = new Medicine(1, "FirstMedicine", "FirstMedicine", "FirstMedicine", 5, false);
         Medicine medicine2 = new Medicine(2, "SecondMedicine", "SecondMedicine", "SecondMedicine", 6, true);
 

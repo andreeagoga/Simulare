@@ -28,7 +28,7 @@ public class TransactionValidator implements IValidator<Transaction> {
             errors += "The time is not in a correct format!\n";
         }
         if(!errors.isEmpty()){
-            throw new ExceptionValidatorDomain("Nu s-a validat"+errors);
+            throw new ExceptionDomain("Nu s-a validat"+errors);
         }
     }
 }

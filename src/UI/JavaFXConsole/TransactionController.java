@@ -9,10 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -52,6 +49,8 @@ public class TransactionController {
     public Button btnTransactionTimeShow;
     public TextField txtTransactionStartDateRemove;
     public TextField txtTransactionEndDateRemove;
+    public CheckBox chkTransactionRecipe;
+    public TableColumn colTransactionRecipe;
 
     private TransactionService transactionService;
     private ObservableList<Transaction> transaction = FXCollections.observableArrayList();
@@ -79,8 +78,9 @@ public class TransactionController {
             int numberMedicine = Integer.parseInt(txtTransactionNumberMedicine.getText());
             String date = txtTransactionDate.getText();
             String hour = txtTransactionHour.getText();
+            boolean withRecipe = Boolean.parseBoolean(chkTransactionRecipe.getText());
 
-            transactionService.addAndUpdate(id, idMedicine, idClientCard, numberMedicine, date, hour);
+            transactionService.addAndUpdate(id, idMedicine, idClientCard, numberMedicine, date, hour, withRecipe);
             transaction.clear();
             transaction.addAll(transactionService.getAll());
             txtTransactionId.clear();
@@ -89,6 +89,7 @@ public class TransactionController {
             txtTransactionNumberMedicine.clear();
             txtTransactionDate.clear();
             txtTransactionHour.clear();
+            chkTransactionRecipe.setSelected(false);
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }
@@ -125,6 +126,8 @@ public class TransactionController {
             txtTransactionNumberMedicine.clear();
             txtTransactionDate.clear();
             txtTransactionHour.clear();
+            chkTransactionRecipe.setSelected(false);
+
         } catch (RuntimeException rex) {
             Common.showValidationError(rex.getMessage());
         }

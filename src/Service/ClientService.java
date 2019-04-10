@@ -62,6 +62,7 @@ public class ClientService <T extends Entity> {
     }
 
     /**
+     * Show all the clients
      * @return the list with all the clients
      */
     public List<Client> getAll(){
@@ -69,9 +70,9 @@ public class ClientService <T extends Entity> {
     }
 
     /**
-     *
-     * @param option
-     * @return
+     * Search the client after the given input
+     * @param option the input to search after
+     * @return the clients which contain the given input
      */
     public List<Client> searchClient(String option){
         List<Client> clientsFound = new ArrayList<>();

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.TextField?>
 
+<?import javafx.scene.control.CheckBox?>
 <HBox fx:controller="UI.JavaFXConsole.TransactionController"
       xmlns:fx="http://javafx.com/fxml" alignment="center">
     <VBox>
@@ -41,6 +42,11 @@
                         <PropertyValueFactory property="hour" />
                     </cellValueFactory>
                 </TableColumn>
+                <TableColumn fx:id="colTransactionRecipe" text="With recipe">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="withRecipe" />
+                    </cellValueFactory>
+                </TableColumn>
             </columns>
         </TableView>
         <TextField fx:id="txtTransactionId" promptText="ID"/>
@@ -49,6 +55,7 @@
         <TextField fx:id="txtTransactionNumberMedicine" promptText="Number of medicines"/>
         <TextField fx:id="txtTransactionDate" promptText="Date of transaction"/>
         <TextField fx:id="txtTransactionHour" promptText="Hour of transaction"/>
+        <CheckBox fx:id="chkTransactionRecipe" text="With recipe"/>
 
         <Button fx:id="btnAddAndUpdateTransaction" text="Add/Update Transaction" onAction="#btnAddAndUpdateTransactionClick"/>
         <Button fx:id="btnRemoveTransaction" text="Remove Transaction" onAction="#btnRemoveTransactionClick"/>
@@ -65,7 +72,7 @@
 
         <TextField fx:id="txtTransactionStartDateRemove" promptText="Remove transaction starting with date:"/>
         <TextField fx:id="txtTransactionEndDateRemove" promptText="Remove transaction ending with date:"/>
-        <Button fx:id="btnTransactionTimeRemove" text="Time of transactions to show" onAction="#btnTransactionTimeRemoveClick"/>
+        <Button fx:id="btnTransactionTimeRemove" text="Time of transactions to remove" onAction="#btnTransactionTimeRemoveClick"/>
 
         <Button fx:id="btnTransactionPrice" text="Show transaction more expansive than the market average" onAction="#btnTransactionPrice"/>
     </VBox>
