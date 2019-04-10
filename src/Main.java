@@ -1,13 +1,9 @@
-import Domain.*;
-import Domain.ClientValidator;
+import Domain.Agenda;
+import Domain.AgendaValidator;
 import Domain.IValidator;
-import Domain.MedicineValidator;
-import Domain.TransactionValidator;
 import Repository.IRepository;
 import Repository.InMemoryRepository;
-import Service.ClientService;
-import Service.MedicineService;
-import Service.TransactionService;
+import Service.AgendaService;
 import UI.JavaFXConsole.ManagerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,31 +19,17 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ManagerWindow.fxml"));
         Parent root = fxmlLoader.load();
 
-        IValidator<Medicine> medicineValidator = new MedicineValidator();
-        IValidator<Client> clientValidator = new ClientValidator();
-        IValidator<Transaction> transactionValidator = new TransactionValidator();
+        IValidator<Agenda> agendaValidator = new AgendaValidator();
 
-        IRepository<Medicine> medicineRepository = new InMemoryRepository<>(medicineValidator);
-        IRepository<Client> clientRepository = new InMemoryRepository<>(clientValidator);
-        IRepository<Transaction> transactionRepository = new InMemoryRepository<>(transactionValidator);
+        IRepository<Agenda> agendaRepository = new InMemoryRepository<>(agendaValidator);
 
-        MedicineService medicineService = new MedicineService(medicineRepository, transactionRepository);
-        medicineService.addAndUpdate(1,"Medicine","A", "Producer", 10, false );
-        medicineService.addAndUpdate(2,"Medicine","B", "Producer", 15, true );
-        medicineService.addAndUpdate(3,"Medicine","C", "Producer", 17, false );
-
-        ClientService clientService = new ClientService(clientRepository);
-        clientService.addAndUpdate(1, "Andreea", "A", "1234567891234", "12.10.2010", "12.12.2019");
-        clientService.addAndUpdate(2, "Maria", "B", "2234567891234", "13.10.2010", "12.13.2019");
-        clientService.addAndUpdate(3, "Ioana", "C", "3234567891234", "14.10.2010", "12.14.2019");
-
-        TransactionService transactionService = new TransactionService(transactionRepository, medicineRepository);
-        transactionService.addAndUpdate(1, 1, 1, 5, "12.12.2012","10:00",false);
-        transactionService.addAndUpdate(2, 3, 3, 15, "12.12.2013","12:00", false);
-        transactionService.addAndUpdate(3, 6, 6, 25, "12.12.2014","10:00", true);
+        AgendaService agendaService = new AgendaService(agendaRepository);
+        agendaService.addAndUpdate(1,"event", "15.10.2013", "10:00", 10 );
+        agendaService.addAndUpdate(2,"even", "15.10.2013", "12:00", 50 );
+        agendaService.addAndUpdate(3,"eve3", "16.10.2013", "11:00", 100 );
 
         ManagerController managerController = fxmlLoader.getController();
-        managerController.setServices(medicineService, clientService, transactionService);
+        managerController.setServices(agendaService);
 
         primaryStage.setTitle("Command manager");
         primaryStage.setScene(new Scene(root, 200, 100));

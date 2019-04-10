@@ -1,8 +1,8 @@
 package Service;
 
 public class ExceptionService extends RuntimeException{
-    public ExceptionService(String exceptionValidatorService){
-        super(exceptionValidatorService);
+    public ExceptionService(String exceptionService){
+        super(exceptionService);
     }
 }
     

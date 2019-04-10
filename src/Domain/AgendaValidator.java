@@ -3,29 +3,24 @@ package Domain;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class TransactionValidator implements IValidator<Transaction> {
+public class AgendaValidator  implements IValidator<Agenda> {
 
-    /**
-     *Validate a transaction
-     * @param transaction the transaction to validate
-     * @throws RuntimeException if there are validation errors
-     */
-    public void validate(Transaction transaction){
+    public void validate(Agenda agenda){
         String errors = "";
-        if (transaction.getNumberMedicine() < 0){
-            errors += "The number of medicine is positive and it is not 0!\n";
-        }
         SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
         try {
-            formatDate.parse(transaction.getDate());
+            formatDate.parse(agenda.getZi());
         } catch (ParseException pe) {
             errors += "The date is not in a correct format!\n";
         }
         SimpleDateFormat formatTime = new SimpleDateFormat("hh:mm");
         try{
-            formatTime.parse(transaction.getHour());
+            formatTime.parse(agenda.getOra());
         } catch (ParseException p) {
             errors += "The time is not in a correct format!\n";
+        }
+        if(agenda.getDurata() < 0){
+            errors +="The duration is positive\n";
         }
         if(!errors.isEmpty()){
             throw new ExceptionDomain("Nu s-a validat"+errors);

@@ -7,8 +7,6 @@
 <HBox alignment="center" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="UI.JavaFXConsole.ManagerController">
 
     <VBox>
-        <Button fx:id="btnMedicine" contentDisplay="CENTER" onAction="#btnMedicineClick" text="Medicine manager" textAlignment="CENTER" textFill="#111111" />
-        <Button fx:id="btnClient" onAction="#btnClientClick" text="Client manager" />
-        <Button fx:id="btnTransaction" onAction="#btnTransactionClick" text="Transaction manager" />
+        <Button fx:id="btnMedicine" contentDisplay="CENTER" onAction="#btnAgendaClick" text="Agenda" textAlignment="CENTER" textFill="#111111" />
     </VBox>
 </HBox>

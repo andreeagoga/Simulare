@@ -1,0 +1,58 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.TextField?>
+
+
+<HBox fx:controller="UI.JavaFXConsole.AgendaController"
+      xmlns:fx="http://javafx.com/fxml" alignment="center">
+
+
+    <VBox>
+        <TableView fx:id="tblAgenda" editable="true">
+            <columns>
+                <TableColumn fx:id="colAgenda" text="ID">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colDenumire" text="Denumire">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="denumire" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colZi" text="Zi">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="zi" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colOra" text="Ora">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="ora" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colDurata" text="Durata">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="durata" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+
+        <TextField fx:id="txtAgendaId" promptText="ID"/>
+        <TextField fx:id="txtAgendaDenumire" promptText="Denumire"/>
+        <TextField fx:id="txtAgendaZi" promptText="Zi"/>
+        <TextField fx:id="txtAgendaOra" promptText="Ora de inceput"/>
+        <TextField fx:id="txtAgendaDurata" promptText="Durata"/>
+
+        <Button fx:id="btnAddAndUpdateAgenda" text="Adauga/Update Agenda" onAction="#btnAddAndUpdateAgendaClick"/>
+        <Button fx:id="btnGetAllEvents" text="Da toate evenimentele" onAction="#btnGetAllEventsClick"/>
+
+        <TextField fx:id="txtAgendaSearchDay" promptText="Ziua evenimentului"/>
+        <Button fx:id="btnAgendaSearch" text="Cauta cel mai lung eveniment" onAction="#btnSearchEvent"/>
+
+    </VBox>
+</HBox>

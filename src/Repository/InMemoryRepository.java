@@ -25,12 +25,6 @@ public class InMemoryRepository<T extends Entity> implements IRepository<T> {
         storage.put(entity.getId(), entity);
     }
 
-    public void remove(Integer id) {
-        if (!storage.containsKey(id)) {
-            throw new ExceptionRepository("There is no medicine with the given id to remove");
-        }
-        storage.remove(id);
-    }
 
     public List<T> getAll(){
         return  new ArrayList<>(storage.values());
