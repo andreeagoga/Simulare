@@ -7,7 +7,10 @@
 //
 //class ClientServiceTest {
 //
-//    @Test
+
+import org.junit.jupiter.api.Test;
+
+@Test
 //    void addAndUpdateServiceShouldAddAndUpdateClients() {
 //        ClientValidator validator = new ClientValidator();
 //        InMemoryRepository repository = new InMemoryRepository(validator);
